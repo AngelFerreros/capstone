@@ -8,8 +8,9 @@ module.exports = (db) => {
    */
 
   let indexControllerCallback = (request, response) => {
-      db.parks.getAll((error, allPokemon) => {
-        response.render('app/index', { allPokemon });
+      db.app.getAll((error, allActivities) => {
+        console.log('ALL ACTIVITIES: ', allActivities)
+        response.render('app/index', { allActivities });
       });
   };
 
@@ -20,7 +21,7 @@ module.exports = (db) => {
    * ===========================================
    */
   return {
-    index: indexControllerCallback,
+    index: indexControllerCallback
   };
 
 }

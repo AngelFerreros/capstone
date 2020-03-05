@@ -1,8 +1,8 @@
 var React = require("react");
 
-class Home extends React.Component {
+class Index extends React.Component {
   render() {
-    console.log(this.props.types);
+    // console.log(this.props.types);
     return (
       <html>
         <head />
@@ -14,4 +14,4 @@ class Home extends React.Component {
   }
 }
 
-module.exports = Home;
+module.exports = Index;

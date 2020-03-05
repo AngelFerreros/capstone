@@ -4,11 +4,9 @@
  * ===========================================
  */
 module.exports = (dbPoolInstance) => {
-
   // `dbPoolInstance` is accessible within this function scope
-
   let getAll = (callback) => {
-    let query = 'SELECT * FROM pokemons';
+    let query = 'SELECT * FROM activities';
     dbPoolInstance.query(query, (error, queryResult) => {
       if( error ){
         // invoke callback function with results after query has executed
@@ -25,6 +23,6 @@ module.exports = (dbPoolInstance) => {
   };
 
   return {
-    getAll:getAll,
+    getAll:getAll
   };
 };
