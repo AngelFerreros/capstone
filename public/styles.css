@@ -1,0 +1,20 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    /*position: relative;*/
+}
+
+#footer {
+    background: #C5E829;
+    /*position: absolute;*/
+    bottom: 0;
+    width: 100%;
+}
+
+.card{
+    width: 18rem;
+}
+
+.view{
+    background: : #FC7202;
+}
