@@ -8,7 +8,6 @@ class Create extends React.Component {
 
   render() {
 
-
     return (
         <Layout>
           <Nav/>
@@ -65,13 +64,15 @@ class Create extends React.Component {
                         </form>
 
                     <div className = "row">
-                        <form method = "GET" action = "#" >
-                            <p><input type = "submit" value = "Cancel"/></p>
+                        <form method = "GET" action = "/" >
+                            <input type = "submit" className="btn btn-primary" value = "Cancel"/>
                         </form>
                     </div>
+
                     </div>
                 </div>
             </div>
+            <script src = '/script.js'> </script>
         </Layout>
 
     );
