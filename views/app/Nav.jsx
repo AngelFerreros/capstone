@@ -19,7 +19,7 @@ class Nav extends React.Component {
                 <a className="nav-link" href="#">Discover People <span className="sr-only">(current)</span></a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#"> Organise an Activity</a>
+                <a className="nav-link" href="/organise"> Organise an Activity</a>
               </li>
             </ul>
                 <button type="button" className="btn btn-outline-success" href="#"> Log out</button>

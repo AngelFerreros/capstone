@@ -1,4 +1,3 @@
-
 module.exports = (db) => {
 
   /**
@@ -7,15 +6,30 @@ module.exports = (db) => {
    * ===========================================
    */
 
-  let indexControllerCallback = (request, response) => {
-      db.app.getAll((error, allActivities) => {
-        data = {
-          activities: allActivities
-        }
-        response.render('app/index', data);
-      });
+  const indexControllerCallback = (request, response) => {
+    db.app.getAll((error, allActivities) => {
+      data = {
+        activities: allActivities
+      }
+      response.render('app/index', data);
+    });
   };
 
+// for get method to render create activity form
+  const createForm = (request, response) => {
+    // if logged in, get user id
+      response.render('app/Create');
+    };
+
+// let loggedin user be able to organise activity
+  const organiseActivity = (request,response) => {
+    db.app.insert((error, res ) => {
+      data = {
+
+      }
+      response.render('app/', data);
+    });
+  }
 
   /**
    * ===========================================
@@ -23,7 +37,8 @@ module.exports = (db) => {
    * ===========================================
    */
   return {
-    index: indexControllerCallback
+    index: indexControllerCallback,
+    create: createForm
   };
 
 }
