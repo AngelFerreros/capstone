@@ -17,29 +17,26 @@ class Index extends React.Component {
         const title = activity.title
         const venue = activity.address
         const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY")
-        const start = moment(activity.start_at).format('LT')
-        const end = moment(activity.end_at).format('LT')
+        const start = activity.start_at.replace('+08', '')
+          const formattedStart = moment(start).format('LT')
+        const end = activity.end_at.replace('+08', '')
+          const formattedEnd = moment(end).format('LT')
 
-
-       // let test = moment.("2020-03-31T16:00:00.000Z").format("MMM DD YYYY")
-        // let formattedDate = moment({month: date.month, date: date.date,year: date.year}).format("MMM DD YYYY");
-        // let formattedStart = moment({start}).format('LT');
-        // let formattedEnd =  moment({end}).format('LT');
-        console.log(title, venue, date, start, end)
+        console.log('activity details: ',title, venue, date, formattedStart, formattedEnd)
         return (
         <div className="card">
           <div className="card-body">
               <h5 className="card-title">{title}</h5>
                 <p className="card-text">Venue: <span> {venue} </span> </p>
                 <p className="card-text">Date: <span> {date} </span> </p>
-                <p className="card-text">Time: <span> {start} - {end}</span> </p>
-
-                  <a href="#" className="btn view">View More</a>
+                <p className="card-text">Time: <span> {formattedStart} - {end}</span> </p>
+                  <a href="#" className="btn btn-warning">View More</a>
           </div>
         </div>
         );
       });
     }
+
     return (
       <html>
         <head>
@@ -50,11 +47,12 @@ class Index extends React.Component {
           <link rel="stylesheet" href="/styles.css" type = "text/css" />
         </head>
         <body>
-        <Nav/>
-          <div className = "container">
-            {card}
-          </div>
-
+          <Nav/>
+            <div className = "container">
+              <div className = "row">
+                {card}
+              </div>
+            </div>
           <Footer/>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossOrigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossOrigin="anonymous"></script>

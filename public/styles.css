@@ -1,12 +1,12 @@
 html, body {
     margin: 0;
     height: 100%;
-    /*position: relative;*/
+    position: relative;
 }
 
 #footer {
     background: #C5E829;
-    /*position: absolute;*/
+    position: absolute;
     bottom: 0;
     width: 100%;
 }
@@ -15,6 +15,6 @@ html, body {
     width: 18rem;
 }
 
-.view{
-    background: : #FC7202;
+.btn-warning{
+    margin: 0 auto;
 }
