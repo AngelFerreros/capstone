@@ -87,7 +87,6 @@ class Register extends React.Component {
                   </div>
                 </div>
             </div>
-            <script src = '/script.js'> </script>
         </Layout>
     );
   }

@@ -10,6 +10,8 @@ module.exports = (app, allModels) => {
   app.get('/', controllerCallbacks.index);
   app.get('/organise', controllerCallbacks.create)
   app.get('/register', controllerCallbacks.register)
+  app.get('/login', controllerCallbacks.login)
+
 
 
 };
