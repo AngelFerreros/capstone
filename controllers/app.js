@@ -21,6 +21,10 @@ module.exports = (db) => {
       response.render('app/Create');
     };
 
+  const registerForm = (request, response) => {
+      response.render('app/Register');
+    };
+
 // let loggedin user be able to organise activity
   const organiseActivity = (request,response) => {
     db.app.insert((error, res ) => {
@@ -38,7 +42,8 @@ module.exports = (db) => {
    */
   return {
     index: indexControllerCallback,
-    create: createForm
+    create: createForm,
+    register: registerForm
   };
 
 }
