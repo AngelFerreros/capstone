@@ -40,8 +40,10 @@ class Index extends React.Component {
         <Layout>
           <Nav/>
             <div className = "container">
-              <div className = "row">
+              <div className ="card-container">
+                <div className = "d-flex row card-row">
                 {card}
+                </div>
               </div>
             </div>
         </Layout>

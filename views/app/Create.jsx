@@ -91,7 +91,7 @@ class Create extends React.Component {
 
                           <input type="submit" className="btn btn-primary" value = "Submit"/>
                         </form>
-                        <form method = "GET" action = "/" >
+                        <form method = "GET" action = "/dashboard" >
                             <input type = "submit" className="btn btn-primary" value = "Cancel"/>
                         </form>
                     </div>

@@ -1,3 +1,4 @@
+const sha256 = require("js-sha256");
 module.exports = (db) => {
 
   /**
@@ -7,12 +8,20 @@ module.exports = (db) => {
    */
 
   const indexControllerCallback = (request, response) => {
-    db.app.getAll((error, allActivities) => {
-      data = {
-        activities: allActivities
-      }
-      response.render('app/index', data);
-    });
+    let userId = request.cookies.userId;
+      db.app.checkSession(userId, (error, loggedIn) => {
+        if(loggedIn){
+          db.app.getAll((error, allActivities) => {
+            data = {
+              activities: allActivities
+            }
+            response.render('app/index', data);
+          })
+        }
+        else{
+            response.render('app/Login');
+        }
+      })
   };
 
  const landing = (request, response) => {
@@ -42,10 +51,6 @@ module.exports = (db) => {
     });
   };
 
-  // const validateIfUserExists = (request,response) => {
-  //     db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => { });
-  // }
-
 
   const registerUser = (request,response) => {
     let skillLevel = request.body.level;
@@ -63,7 +68,7 @@ module.exports = (db) => {
               error: error,
               errorMsg: "Something went wrong. Please try again."
             };
-            response.render('app/Register', data)
+            response.render('app/Register', data);
           } else {
             response.render('app/Login');
           }
@@ -73,10 +78,10 @@ module.exports = (db) => {
 const loginUser = (request,response) => {
   let email = request.body.email;
   let pswd = request.body.pswd;
-  console.log("in controller")
+  console.log("in controller");
     db.app.getUserRecord(email, pswd, (error, result) => {
       if (error){
-        console.log("controller error: ", error)
+        console.log("controller error: ", error);
         const data = {
             error: error,
             errorMsg:"There was an error in logging you in. Please check your login details and try again."
@@ -84,8 +89,11 @@ const loginUser = (request,response) => {
           response.render("app/Login", data);
       }
       else{
-        console.log('result in controller: ', result)
+        console.log('result in controller: ', result);
+        let hashedUname = sha256(result.rows[0].username);
         response.cookie('logged_in', true);
+        response.cookie('user', hashedUname);
+        response.cookie('userId', result.rows[0].id);
         response.redirect("/dashboard");
       }
     });
@@ -93,6 +101,9 @@ const loginUser = (request,response) => {
 
   const logout = (request, response) => {
     response.clearCookie("logged_in");
+    response.clearCookie("user");
+    response.clearCookie("userId");
+
     response.redirect("/");
   };
 
@@ -102,7 +113,7 @@ const loginUser = (request,response) => {
       data = {
 
       }
-      response.render('app/', data);
+      response.render('app/Profile', data);
     });
   }
 

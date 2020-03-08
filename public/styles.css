@@ -37,6 +37,15 @@ html, body {
     width: 18rem;
 }
 
+.card-container{
+    padding: 20px;
+    margin: 15px auto;
+}
+
+.card-row{
+    justify-content: space-around;
+
+}
 
 
 /*.btn-warning{
