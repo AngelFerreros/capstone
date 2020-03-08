@@ -5,16 +5,22 @@ html, body {
 }
 
 #footer {
-    background: #C5E829;
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(94,223,34,0.8785889355742297) 100%);;
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+.navbar{
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(94,223,34,0.8785889355742297) 100%);
 }
 
 .card{
     width: 18rem;
 }
 
-.btn-warning{
+/*.btn-warning{
     margin: 0 auto;
-}
+}*/

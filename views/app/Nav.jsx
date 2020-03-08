@@ -16,13 +16,18 @@ class Nav extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="nav-link" href="#">Discover People <span className="sr-only">(current)</span></a>
+              <li className="nav-item active">
+                <a className="nav-link" href="#"> Profile </a>
+              </li>
+                <a className="nav-link" href="#">Discover People </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/organise"> Organise an Activity</a>
               </li>
             </ul>
-                <button type="button" className="btn btn-outline-success" href="#"> Log out</button>
+            <form method = "POST" action = "/logout">
+                <input type="submit" className= "btn btn-warning" value = "Log Out"/>
+            </form>
           </div>
         </nav>
     );

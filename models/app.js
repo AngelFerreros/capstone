@@ -1,6 +1,6 @@
-const moment = require("moment")
-const sha256 = require("js-sha256")
-const SALT = 'Wow, last project!'
+const moment = require("moment");
+const sha256 = require("js-sha256");
+const SALT = 'Wow, last project!';
 
 /**
  * ===========================================
@@ -46,6 +46,27 @@ module.exports = (dbPoolInstance) => {
     });
   };
 
+  const getUserRecord = (email, pswd, callback) => {
+    let query = `SELECT * FROM users WHERE email ='`+email+`'`
+    console.log('query is ', query)
+      dbPoolInstance.query(query, (error, result) => {
+        if (error){
+          console.log("models error: ", error);
+        }
+        else if (result.rows[0] === undefined) {
+          callback(error, null);
+        } else {
+          console.log('result in models: ', result)
+          let dbPswd = result.rows[0].password;
+          if (sha256(SALT + pswd) === dbPswd) {
+            let userID = result.rows[0].id;
+            callback(error, result);
+          } else {
+            callback(error, null);
+          }
+        }
+    });
+  }
 
 
 // for post method to create activity
@@ -66,7 +87,8 @@ module.exports = (dbPoolInstance) => {
 
   return {
     getAll:getAll,
-    recordUser:recordUser
+    recordUser:recordUser,
+    getUserRecord: getUserRecord
     // insert: addNewActivity
   };
 };

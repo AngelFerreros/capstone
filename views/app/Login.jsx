@@ -3,14 +3,16 @@ const Layout = require("./Layout")
 
 class Login extends React.Component {
   render() {
+    let errorMsg = this.props.error ? this.props.errorMsg : " " ;
 
     return (
       <Layout>
-            <div className="container text-center" id="register" >
+            <div className="container text-center" >
                 <div className="row">
                   <div className="col">
                     <h2>Log In</h2>
-                        <form method = "POST" action="/" className="needs-validation" noValidate>
+                      <p>{errorMsg}</p>
+                        <form method = "POST" action="/login" className="needs-validation" noValidate>
                           <div className="form-group">
                             <label for="email">Email:</label>
                             <input type="email" className="form-control" id="email" name="email" required/>

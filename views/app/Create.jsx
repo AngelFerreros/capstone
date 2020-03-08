@@ -77,7 +77,7 @@ class Create extends React.Component {
                           </div>
                           <div className="form-group">
                                <label for="time">Time:</label>
-                               <input type="time" class="form-control" id="description" name="time" required/>
+                               <input type="time" class="form-control" id="time" name="time" required/>
                                <div className="valid-feedback">Valid.</div>
                                <div className="invalid-feedback">Please fill out this field.</div>
                           </div>

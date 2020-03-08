@@ -15,6 +15,11 @@ module.exports = (db) => {
     });
   };
 
+ const landing = (request, response) => {
+      response.render('app/Landing');
+    };
+
+
 // for get method to render create activity form
   const createForm = (request, response) => {
     // if logged in, get user id
@@ -33,9 +38,14 @@ module.exports = (db) => {
     db.app.functionToGetUserDetails((error, result) => {
       console.log(result);
       // data = {}
-      response.render('app/index', data);
+      response.render('app/Profile', data);
     });
   };
+
+  // const validateIfUserExists = (request,response) => {
+  //     db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => { });
+  // }
+
 
   const registerUser = (request,response) => {
     let skillLevel = request.body.level;
@@ -45,7 +55,7 @@ module.exports = (db) => {
     let address = request.body.address;
     let coach = request.body.coaching;
     let courtAccess = request.body.court_access;
-
+      // !!! VALIDATE IF USER ALR EXISTS !!! //
       db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => {
         console.log("result in controller: ", result);
           if(error){
@@ -61,30 +71,30 @@ module.exports = (db) => {
   }
 
 const loginUser = (request,response) => {
-    let skillLevel = request.body.level;
-    let email = request.body.email;
-    let pswd = request.body.pswd;
-    let uname = request.body.uname;
-    let address = request.body.address;
-    let coach = request.body.coaching;
-    let courtAccess = request.body.court_access;
+  let email = request.body.email;
+  let pswd = request.body.pswd;
+  console.log("in controller")
+    db.app.getUserRecord(email, pswd, (error, result) => {
+      if (error){
+        console.log("controller error: ", error)
+        const data = {
+            error: error,
+            errorMsg:"There was an error in logging you in. Please check your login details and try again."
+          };
+          response.render("app/Login", data);
+      }
+      else{
+        console.log('result in controller: ', result)
+        response.cookie('logged_in', true);
+        response.redirect("/dashboard");
+      }
+    });
+};
 
-      db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => {
-        console.log("result in controller: ", result);
-          if(error){
-            data = {
-              error: error,
-              errorMsg: "Something went wrong. Please try again."
-            };
-            response.render('app/Register', data)
-          } else {
-            response.render('app/Login');
-          }
-      });
-  }
-
-
-
+  const logout = (request, response) => {
+    response.clearCookie("logged_in");
+    response.redirect("/");
+  };
 
 // let loggedin user be able to organise activity
   const organiseActivity = (request,response) => {
@@ -108,7 +118,9 @@ const loginUser = (request,response) => {
     login: loginForm,
     profile: getProfile,
     registerUser: registerUser,
-    loginUser: loginUser
+    loginUser: loginUser,
+    logout: logout,
+    landing: landing
   };
 
 }
