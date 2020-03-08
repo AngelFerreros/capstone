@@ -97,7 +97,6 @@ class Create extends React.Component {
                     </div>
                 </div>
             </div>
-            <script type= "text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0mU_z1ODp6PjIxdxewMWW9559ZzoerOA&libraries=places&callback=activateAutocomplete"></script>
         </Layout>
     );
   }

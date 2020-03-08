@@ -24,6 +24,28 @@ module.exports = (dbPoolInstance) => {
         }
       }
     });
+  };
+
+  const recordUser = (skillLevel, email, pswd, uname, address, coach, courtAccess, callback) => {
+    let hashedPw = sha256(SALT + pswd);
+    let query;
+      if(coach === null || courtAccess === null ){
+        query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+      }else {
+        query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
+      }
+    let values = [skillLevel, email, hashedPw, uname, address, coach, courtAccess];
+     // query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
+    dbPoolInstance.query(query, values, (err, result) => {
+      if (err){
+        callback(err, null);
+      }
+      else {
+        callback(err, result);
+      }
+    });
+  };
+
 
 
 // for post method to create activity
@@ -32,11 +54,10 @@ module.exports = (dbPoolInstance) => {
   // let values = [];
   //   db.dbPoolInstance.query(insertQuery, values, (error, res)=>{
 
+
   //   });
   // }
 
-
-  };
 
 
 
@@ -44,7 +65,8 @@ module.exports = (dbPoolInstance) => {
 
 
   return {
-    getAll:getAll
+    getAll:getAll,
+    recordUser:recordUser
     // insert: addNewActivity
   };
 };

@@ -50,6 +50,7 @@ var map;
         };
 
 function addDisable(event){
+  console.log('clicked add')
     let coachingSwitch = document.getElementById('coaching')
       if (coachingSwitch.disabled === false){
         coachingSwitch.disabled = true
@@ -57,6 +58,7 @@ function addDisable(event){
 };
 
 function removeDisable(event){
+  console.log('clicked remove')
     let coachingSwitch = document.getElementById('coaching')
       if (coachingSwitch.disabled){
         coachingSwitch.disabled = false;
