@@ -64,3 +64,4 @@ function removeDisable(event){
         coachingSwitch.disabled = false;
       }
 };
+

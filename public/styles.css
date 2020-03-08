@@ -5,11 +5,27 @@ html, body {
 }
 
 #footer {
-    background: rgb(34,193,195);
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(94,223,34,0.8785889355742297) 100%);;
+    background: #EEFF32;
+    /*background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(94,223,34,0.8785889355742297) 100%);;*/
     position: absolute;
+    color: #009EFF;
     bottom: 0;
     width: 100%;
+    height: 50px;
+}
+
+#background{
+  background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(25,200,46,0.6993172268907564) 0%, rgba(0,212,255,0.27074579831932777) 83%),
+  url("/images/multicourts.jpg") no-repeat center center fixed;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:-1;
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .navbar{
@@ -20,6 +36,8 @@ html, body {
 .card{
     width: 18rem;
 }
+
+
 
 /*.btn-warning{
     margin: 0 auto;
