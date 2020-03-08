@@ -14,15 +14,18 @@ class Activity extends React.Component {
             <div className="container">
                 <div className = "row">
                   <div className="col">
-                    <h2>Player Profile:</h2>
-                        <p>Name:</p>
-                        <p>Skill:</p>
-                        <p>Willing To Teach:</p>
+                    <h2>Activity Details:</h2>
+                      <p>Title:</p>
+                      <p>Description:</p>
 
-                        <p>Activities Hosted:</p>
-                        <p>Activities Joined:</p>
 
-                  </div>
+                        <p>Date:</p>
+                        <p>Time:</p>
+
+                        <p>Venue:</p>
+                        <p>Attendees:</p><span> (slots left i.e 2/4) </span>
+
+                    </div>
                 </div>
             </div>
         </Layout>

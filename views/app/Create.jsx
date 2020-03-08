@@ -14,7 +14,7 @@ class Create extends React.Component {
             <div className="container">
                 <div className = "row">
                   <div className="col">
-                    <h2>Activity Details:</h2>
+                    <h2>Organise an Activity:</h2>
                         <form method = "POST" action="/" className="needs-validation" noValidate>
                           <div className="form-group">
                             <label for="title">Title:</label>

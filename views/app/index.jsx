@@ -13,6 +13,7 @@ class Index extends React.Component {
     let card;
     if (activityArr){
       card = activityArr.map( (activity,index) => {
+        const activityId = activity.id
         const title = activity.title
         const venue = activity.address
         const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY")
@@ -29,7 +30,7 @@ class Index extends React.Component {
                 <p className="card-text">Venue: <span> {venue} </span> </p>
                 <p className="card-text">Date: <span> {date} </span> </p>
                 <p className="card-text">Time: <span> {formattedStart} - {end}</span> </p>
-                  <a href="#" className="btn btn-warning">View More</a>
+                  <a href="/activity/{activityId}" className="btn btn-warning">View More</a>
           </div>
         </div>
         );

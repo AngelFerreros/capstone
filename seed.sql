@@ -3,21 +3,21 @@
 -- VALUES
 -- ('Beginner'), ('Intermediate'), ('Competitive');
 
-INSERT INTO users
-(level_id, email, password, username, address, can_coach, court_access)
-VALUES
-('1', 'martina@tennis.co', 'martina1', 'martina', '79 Anson Road', false, false),
-('1', 'nick@gmail.com', 'nick1', 'nick', '9 Science Centre Road', false, true),
-('2', 'novak@aol.com','novak1','nole_djoker', '52 Stadium Rd', true, false),
-('2', 'serena@gmail.com','serena1','serenaW', '385 Beach Rd', false, true),
-('3', 'rafa@gmail.com','rafa1','spanish_bull', '2 Telok Blangah Way', true, true),
-('3', 'roger@yahoo.com','roger1','kiss_my_ace', '6 Raffles Blvd', false, true),
-('1', 'ana@tennis.co','ana1','ana', '57 Rutland Rd', false, true),
-('1', 'coco@aol.com','coco1','cool_coco', '3000 Ang Mo Kio Ave 8', false, true),
-('2', 'naomi@ao.sg','naomi1','naomi', '3 St Wilfred Rd', false, true),
-('2', 'boris@gmail.co','boris1','legendz', '130E Harding Rd', false, false),
-('3', 'john@yahoo.sg','john1','john_d_man', '1 Rutland Rd', false, true),
-('3', 'stefanos@.gmail.com','stefanos1','greek_god', '34 Neil Road', true, true);
+-- INSERT INTO users
+-- (level_id, email, password, username, address, can_coach, court_access)
+-- VALUES
+-- ('1', 'martina@tennis.co', 'martina1', 'martina', '79 Anson Road', false, false),
+-- ('1', 'nick@gmail.com', 'nick1', 'nick', '9 Science Centre Road', false, true),
+-- ('2', 'novak@aol.com','novak1','nole_djoker', '52 Stadium Rd', true, false),
+-- ('2', 'serena@gmail.com','serena1','serenaW', '385 Beach Rd', false, true),
+-- ('3', 'rafa@gmail.com','rafa1','spanish_bull', '2 Telok Blangah Way', true, true),
+-- ('3', 'roger@yahoo.com','roger1','kiss_my_ace', '6 Raffles Blvd', false, true),
+-- ('1', 'ana@tennis.co','ana1','ana', '57 Rutland Rd', false, true),
+-- ('1', 'coco@aol.com','coco1','cool_coco', '3000 Ang Mo Kio Ave 8', false, true),
+-- ('2', 'naomi@ao.sg','naomi1','naomi', '3 St Wilfred Rd', false, true),
+-- ('2', 'boris@gmail.co','boris1','legendz', '130E Harding Rd', false, false),
+-- ('3', 'john@yahoo.sg','john1','john_d_man', '1 Rutland Rd', false, true),
+-- ('3', 'stefanos@.gmail.com','stefanos1','greek_god', '34 Neil Road', true, true);
 
 -- INSERT INTO categories
 -- (type)

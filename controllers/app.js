@@ -7,7 +7,7 @@ module.exports = (db) => {
    * ===========================================
    */
 
-  const indexControllerCallback = (request, response) => {
+  const indexPage = (request, response) => {
     let userId = request.cookies.userId;
       db.app.checkSession(userId, (error, loggedIn) => {
         if(loggedIn){
@@ -24,12 +24,10 @@ module.exports = (db) => {
       })
   };
 
- const landing = (request, response) => {
+  const landing = (request, response) => {
       response.render('app/Landing');
     };
 
-
-// for get method to render create activity form
   const createForm = (request, response) => {
     // if logged in, get user id
       response.render('app/Create');
@@ -43,8 +41,9 @@ module.exports = (db) => {
       response.render('app/Login');
     };
 
+// get user data and activities joined/hosted
   const getProfile = (request, response) => {
-    db.app.functionToGetUserDetails((error, result) => {
+    db.app.functionToGetUserData((error, result) => {
       console.log(result);
       // data = {}
       response.render('app/Profile', data);
@@ -107,7 +106,7 @@ const loginUser = (request,response) => {
     response.redirect("/");
   };
 
-// let loggedin user be able to organise activity
+// let loggedin user be able to organise activity,once created
   const organiseActivity = (request,response) => {
     db.app.insert((error, res ) => {
       data = {
@@ -117,13 +116,23 @@ const loginUser = (request,response) => {
     });
   }
 
+  const activityPage = (request, response) => {
+// query to get specific activity
+  // db.app.getActivityDetails()
+    response.render('app/Activity');
+  }
+
+
+
+
+
   /**
    * ===========================================
    * Export controller functions as a module
    * ===========================================
    */
   return {
-    index: indexControllerCallback,
+    index: indexPage,
     create: createForm,
     register: registerForm,
     login: loginForm,
@@ -131,7 +140,9 @@ const loginUser = (request,response) => {
     registerUser: registerUser,
     loginUser: loginUser,
     logout: logout,
-    landing: landing
+    landing: landing,
+    organiseActivity: organiseActivity,
+    activity: activityPage
   };
 
 }

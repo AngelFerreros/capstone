@@ -5,7 +5,7 @@ class Nav extends React.Component {
 
   return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a id="logo" href= "/">
+            <a id="logo" href= "/dashboard">
               <div className="navbar-brand"><img src="#"/></div>
             </a>
 
@@ -17,7 +17,7 @@ class Nav extends React.Component {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
               <li className="nav-item active">
-                <a className="nav-link" href="#"> Profile </a>
+                <a className="nav-link" href="/profile"> Profile </a>
               </li>
                 <a className="nav-link" href="#">Discover People </a>
               </li>

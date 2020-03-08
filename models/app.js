@@ -88,6 +88,19 @@ module.exports = (dbPoolInstance) => {
       db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => { });
   }
 
+  const getActivityDetails = ()=> {
+    db
+  }
+
+// query to check activities hosted and joined by user
+
+
+// query to insert user into join table (user joins activity)
+
+
+//query to automatically insert user as host in activity organised
+
+
 
 
 // for post method to create activity
@@ -111,7 +124,8 @@ module.exports = (dbPoolInstance) => {
     recordUser:recordUser,
     getUserRecord: getUserRecord,
     checkSession: checkSession,
-    userExists: userExists
+    userExists: userExists,
+    getActivityDetails:getActivityDetails
     // insert: addNewActivity
   };
 };
