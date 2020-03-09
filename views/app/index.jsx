@@ -25,13 +25,14 @@ class Index extends React.Component {
 
         console.log('activity details: ',activityId, title, venue, date, formattedStart, formattedEnd);
         return (
-        <div className="card">
+
+        <div className="card border-info mb-3">
           <div className="card-body">
               <h5 className="card-title">{title}</h5>
                 <p className="card-text">Venue: <span> {venue} </span> </p>
                 <p className="card-text">Date: <span> {date} </span> </p>
                 <p className="card-text">Time: <span> {formattedStart} - {end}</span> </p>
-                  <a href={url} className="btn btn-warning">View More</a>
+                  <a href={url} className="btn btn-info">View More</a>
           </div>
         </div>
         );
@@ -42,11 +43,11 @@ class Index extends React.Component {
         <Layout>
           <Nav userId = {this.props.userId}/>
             <div className = "container">
-              <div className ="card-container">
-                <div className = "d-flex row card-row">
-                {card}
+                <div className = "d-flex row card-row justify-content-around p-4 text-center">
+                  <div className="card-columns">
+                  {card}
+                  </div>
                 </div>
-              </div>
             </div>
         </Layout>
     );

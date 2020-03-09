@@ -100,6 +100,24 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
+// query to check attendees(incl.host) of an activity
+  const getAttendees = (activityId, callback) => {
+    let query = 'SELECT activities_users.user_id, users.username from activities_users INNER JOIN users ON (activities_users.user_id = users.id) WHERE activities_users.activity_id='+activityId;
+    dbPoolInstance.query(query, (error, result) => {
+       if( error ){
+        callback(error, null);
+      }else{
+        if( result.rows.length > 0 ){
+          callback(null, result.rows);
+        }else{
+          callback(null, null);
+        }
+      }
+    });
+ }
+
+
+
 // query to insert activities into table
   const insertActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
     let values = [userId, category, title, description, date, start_at, end_at, address, slots];
@@ -129,18 +147,11 @@ module.exports = (dbPoolInstance) => {
  }
 
 
-
-
-
 // query to update activities
 
 
 
 // query to delete activities
-
-
-// query to check activities hosted and joined by user
-  //to display in profile page (a)
 
 
 
@@ -160,6 +171,7 @@ module.exports = (dbPoolInstance) => {
     userExists: userExists,
     getActivityDetails:getActivityDetails,
     insertActivity: insertActivity,
-    joinActivity: joinActivity
+    joinActivity: joinActivity,
+    getAttendees: getAttendees
   };
 };

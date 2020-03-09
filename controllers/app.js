@@ -164,11 +164,19 @@ const loginUser = (request,response) => {
     let userId = request.cookies.userId;
     let activityId = request.params.id;
     console.log('activity id chosen: ', activityId)
-      db.app.getActivityDetails(activityId,(error, result) => {
-        data = {
-          activityDetails: result[0]
+      db.app.getActivityDetails(activityId, (error, result) => {
+        if (error){
+          console.log(error)
+        } else {
+          db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
+            console.log('attendees of activity: ', attendeeRes)
+            data = {
+              activityDetails: result[0],
+              attendees: attendeeRes
+            }
+          response.render('app/Activity', data);
+          });
         }
-      response.render('app/Activity', data);
       })
   };
 
