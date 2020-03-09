@@ -29,11 +29,9 @@ module.exports = (dbPoolInstance) => {
   const recordUser = (skillLevel, email, pswd, uname, address, coach, courtAccess, callback) => {
     let hashedPw = sha256(SALT + pswd);
     let query;
-      if(coach === null || courtAccess === null ){
-        query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-      }else {
-        query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
-      }
+    coach = coach ? coach : false;
+    courtAccess = courtAccess ? courtAccess : false;
+    query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
     let values = [skillLevel, email, hashedPw, uname, address, coach, courtAccess];
      // query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
     dbPoolInstance.query(query, values, (err, result) => {
@@ -75,14 +73,15 @@ module.exports = (dbPoolInstance) => {
         callback(error, null);
       }
       else {
-      callback(null, result.rows[0]);
+        console.log('user record: ', result.rows[0])
+        callback(null, result.rows[0]);
       }
     });
   };
 
 
 
-
+// to check if user exists on registering
   const userExists = (param,callback) => {
       dbPoolInstance.query(query, (error, result) =>{ });
   }
@@ -106,12 +105,13 @@ module.exports = (dbPoolInstance) => {
 // query to check activities hosted and joined by user
 
 
-
 // query to insert user into join table (user joins activity)
 
 
 //query to automatically insert user as host in activity organised
 
+
+// query to check available slots
 
 
 

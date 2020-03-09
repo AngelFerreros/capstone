@@ -49,19 +49,19 @@ var map;
           })
         };
 
-function addDisable(event){
+function addDisable(){
   console.log('clicked add')
-    let coachingSwitch = document.getElementById('coaching')
-      if (coachingSwitch.disabled === false){
-        coachingSwitch.disabled = true
-      }
+  let coachingSwitch = document.getElementById('coaching')
+  coachingSwitch.checked = false
+  coachingSwitch.disabled = true
 };
 
-function removeDisable(event){
+function removeDisable(){
   console.log('clicked remove')
-    let coachingSwitch = document.getElementById('coaching')
-      if (coachingSwitch.disabled){
-        coachingSwitch.disabled = false;
-      }
+  let coachingSwitch = document.getElementById('coaching')
+  coachingSwitch.disabled = false;
 };
 
+document.getElementById('beginner').addEventListener('click', addDisable)
+document.getElementById('intermediate').addEventListener('click', removeDisable)
+document.getElementById('competitive').addEventListener('click', removeDisable)

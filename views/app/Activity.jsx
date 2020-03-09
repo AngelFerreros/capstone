@@ -24,14 +24,14 @@ class Activity extends React.Component {
                 <div className = "row">
                   <div className="col">
                     <h2>Activity Details:</h2>
-                      <p>Title:</p>
-                      <p>Description:</p>
+                      <p>Title: {title} </p>
+                      <p>Description: {description}</p>
 
 
-                        <p>Date:</p>
+                        <p>Date:{date}</p>
                         <p>Time:</p>
                         <p>Venue:</p>
-                        <p id = "addressToMap"> </p>
+                        <p id = "addressToMap">{venue}</p>
                         <div id = "map"> </div>
                         <p>Attendees:</p><span> (slots left i.e 2/4) </span>
 

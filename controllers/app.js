@@ -7,24 +7,30 @@ module.exports = (db) => {
    * ===========================================
    */
 
+// checkSession :: request.cookies -> boolean
+
 // verify if user is alr loggedIn in all GET requests
-  const checkSession = (request,response)=> {
-    let userId = request.cookie.userId;
-     db.app.userRecord(userId, (error, result) => {
-    let hashedCookie = sha256(uname);
-
-    if( request.cookies.user === hashedCookie){
-
+  const checkSession = (request, response )=> {
+    let loggedIn;
+      db.app.userRecord(userId, (error, result) => {
+        let uname = result.username;
+        let hashedCookie = sha256(uname);
+      })
+        if( request.cookies.user === hashedCookie){
+          console.log('User is logged in!')
+          loggedIn = true
+        }
+        else{
+          loggedIn= false
+          response.render('app/Login');
+        }
   }
 
-
-
-
-  const indexPage = (request, response) => {
-    let userId = request.cookies.userId;
-
 //////////// DOUBLE CHECK METHOD TO VERIFY IF USER IS LOGGED IN ////////////
-      checkSession(userId, (error, loggedIn) => {
+  const indexPage = (request, response) => {
+    console.log('UserId cookie: ', request.cookies.userId)
+    let userId = request.cookies.userId;
+      checksession(request, response => {
         if(loggedIn){
           db.app.getAll((error, allActivities) => {
             data = {

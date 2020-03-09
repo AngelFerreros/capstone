@@ -3,12 +3,6 @@ const Layout = require("./Layout")
 
 
 class Register extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      disabled: true
-    }
-  }
 
   render() {
     let errorMsg = this.props.error ? this.props.errorMsg : " " ;
@@ -48,17 +42,17 @@ class Register extends React.Component {
 
                           <div className="form-group" required>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="level" id="beginner" value="1" onClick = {console.log('clickeeeddd')} />
+                                <input className="form-check-input" type="radio" name="level" id="beginner" value="1" />
                                   <label className="form-check-label" for="beginner">Beginner</label>
                               </div>
 
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="level" id="intermediate" value="2" onClick = {console.log('clickeeeddd')}/>
+                                <input className="form-check-input" type="radio" name="level" id="intermediate" value="2"/>
                                   <label className="form-check-label" for="intermediate">Intermediate</label>
                               </div>
 
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="level" id="competitive" value="3" onClick = {console.log('clickeeeddd')} />
+                                <input className="form-check-input" type="radio" name="level" id="competitive" value="3"  />
                                   <label className="form-check-label" for="competitive">Competitive</label>
                               </div>
                           </div>
