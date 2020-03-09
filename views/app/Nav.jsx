@@ -2,6 +2,8 @@ const React = require("react");
 
 class Nav extends React.Component {
   render() {
+    let profilePath =  '/profile/'+this.props.userId;
+
 
   return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,7 +19,7 @@ class Nav extends React.Component {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
               <li className="nav-item active">
-                <a className="nav-link" href="/profile"> Profile </a>
+                <a className="nav-link" href={profilePath}> Profile </a>
               </li>
                 <a className="nav-link" href="#">Discover People </a>
               </li>

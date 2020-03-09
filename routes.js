@@ -12,7 +12,7 @@ module.exports = (app, allModels) => {
   app.get('/organise', controllerCallbacks.create)
   app.get('/register', controllerCallbacks.register)
   app.get('/login', controllerCallbacks.login)
-  app.get('/profile', controllerCallbacks.profile)
+  app.get('/profile/:userId', controllerCallbacks.profile)
   app.get('/activity/:id', controllerCallbacks.activity)
 
 

@@ -40,7 +40,7 @@ class Index extends React.Component {
 
     return (
         <Layout>
-          <Nav/>
+          <Nav userId = {this.props.userId}/>
             <div className = "container">
               <div className ="card-container">
                 <div className = "d-flex row card-row">

@@ -26,13 +26,14 @@ module.exports = (db) => {
   //       }
   // }
 
-//////////// DOUBLE CHECK METHOD TO VERIFY IF USER IS LOGGED IN ////////////
+//////////// ADD AUTHENTICATION FOR ALL GET REQUESTS ////////////
   const indexPage = (request, response) => {
     console.log('UserId cookie: ', request.cookies.userId)
     let userId = request.cookies.userId;
 
           db.app.getAll((error, allActivities) => {
             data = {
+              userId:request.cookies.userId,
               activities: allActivities
             }
             response.render('app/index', data);
@@ -59,11 +60,15 @@ module.exports = (db) => {
 
 // get user data and activities joined/hosted
   const getProfile = (request, response) => {
-    db.app.functionToGetUserData((error, result) => {
-      console.log(result);
-      // data = {}
-      response.render('app/Profile', data);
-    });
+    let userId = request.cookies.userId;
+      db.app.userRecord(userId, (error, result) => {
+        console.log('user record: ', result);
+        data = {
+          userId: request.cookies.userId,
+          details: result
+        }
+        response.render('app/Profile', data);
+      });
   };
 
 

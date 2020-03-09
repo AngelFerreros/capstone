@@ -66,7 +66,7 @@ module.exports = (dbPoolInstance) => {
   }
 
   const userRecord = (userId, callback) => {
-    const query = `SELECT * FROM users WHERE id ='`+userId+`'`;
+    const query = `SELECT * FROM users WHERE id =`+userId;
     dbPoolInstance.query(query, (error, result) => {
       if (error){
         callback(error, null);
@@ -99,6 +99,7 @@ module.exports = (dbPoolInstance) => {
       }
     });
   }
+
 
 
 // query to insert activities into table

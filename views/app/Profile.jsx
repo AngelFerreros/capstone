@@ -7,6 +7,9 @@ moment().format();
 class Profile extends React.Component {
 
   render() {
+    let name = this.props.details.username;
+    let skillLevel = this.props.level_id
+      let skillName = skillLevel === 1 ? "Beginner" : (skillLevel === 2 ? "Intermediate" : "Competitive")
 
     return (
         <Layout>
@@ -15,12 +18,12 @@ class Profile extends React.Component {
                 <div className = "row">
                   <div className="col">
                     <h2>Player Profile:</h2>
-                        <p>Name:</p>
-                        <p>Skill:</p>
-                        <p>Willing To Teach:</p>
+                        <p>Username: {name} </p>
+                        <p>Skill: {skillName} </p>
+                        <p>Willing To Teach: {} </p>
 
-                        <p>Activities Hosted:</p>
-                        <p>Activities Joined:</p>
+                        <p>Activities Hosted: {} </p>
+                        <p>Activities Joined: {} </p>
 
                   </div>
                 </div>
