@@ -8,6 +8,8 @@ class Activity extends React.Component {
 
   render() {
     const activity = this.props.activityDetails
+    console.log('ACTIVITY: ', activity)
+
     const title = activity.title
     const description = activity.description
     const venue = activity.address

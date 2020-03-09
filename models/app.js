@@ -28,12 +28,11 @@ module.exports = (dbPoolInstance) => {
 
   const recordUser = (skillLevel, email, pswd, uname, address, coach, courtAccess, callback) => {
     let hashedPw = sha256(SALT + pswd);
-    let query;
     coach = coach ? coach : false;
     courtAccess = courtAccess ? courtAccess : false;
-    query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
+
+    let query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
     let values = [skillLevel, email, hashedPw, uname, address, coach, courtAccess];
-     // query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
     dbPoolInstance.query(query, values, (err, result) => {
       if (err){
         callback(err, null);
@@ -89,8 +88,19 @@ module.exports = (dbPoolInstance) => {
   const getActivityDetails = (activityId, callback)=> {
     let query = `SELECT * FROM activities WHERE id =`+activityId;
     dbPoolInstance.query(query, (error, result) => {
+       if( error ){
+        callback(error, null);
+      }else{
+        if( result.rows.length > 0 ){
+          callback(null, result.rows);
+        }else{
+          callback(null, null);
+        }
+      }
     });
   }
+
+
 // query to insert activities into table
 
 

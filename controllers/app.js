@@ -10,38 +10,33 @@ module.exports = (db) => {
 // checkSession :: request.cookies -> boolean
 
 // verify if user is alr loggedIn in all GET requests
-  const checkSession = (request, response )=> {
-    let loggedIn;
-      db.app.userRecord(userId, (error, result) => {
-        let uname = result.username;
-        let hashedCookie = sha256(uname);
-      })
-        if( request.cookies.user === hashedCookie){
-          console.log('User is logged in!')
-          loggedIn = true
-        }
-        else{
-          loggedIn= false
-          response.render('app/Login');
-        }
-  }
+  // const checkSession = (request, response )=> {
+  //   let loggedIn;
+  //     db.app.userRecord(userId, (error, result) => {
+  //       let uname = result.username;
+  //       let hashedCookie = sha256(uname);
+  //     })
+  //       if( request.cookies.user === hashedCookie){
+  //         console.log('User is logged in!')
+  //         loggedIn = true
+  //       }
+  //       else{
+  //         loggedIn= false
+  //         response.render('app/Login');
+  //       }
+  // }
 
 //////////// DOUBLE CHECK METHOD TO VERIFY IF USER IS LOGGED IN ////////////
   const indexPage = (request, response) => {
     console.log('UserId cookie: ', request.cookies.userId)
     let userId = request.cookies.userId;
-      checksession(request, response => {
-        if(loggedIn){
+
           db.app.getAll((error, allActivities) => {
             data = {
               activities: allActivities
             }
             response.render('app/index', data);
-          })
-        }
-        else{
-            response.render('app/Login');
-        }
+
       })
   };
 
@@ -140,19 +135,14 @@ const loginUser = (request,response) => {
 // query to get specific activity
   const activityPage = (request, response) => {
     let userId = request.cookies.userId;
-        db.app.checkSession(userId, (error, loggedIn) => {
-          if(loggedIn){
-            db.app.getActivityDetails(activityId,(error, result) => {
-              data = {
-                activityDetails: result.rows[0]
-              }
-              response.render('app/Activity', data);
-            })
-          }
-          else{
-            response.render('app/Login');
-          }
-        })
+    let activityId = request.params.id;
+    console.log('activity id chosen: ', activityId)
+      db.app.getActivityDetails(activityId,(error, result) => {
+        data = {
+          activityDetails: result[0]
+        }
+      response.render('app/Activity', data);
+      })
   };
 
 
