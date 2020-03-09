@@ -7,9 +7,24 @@ module.exports = (db) => {
    * ===========================================
    */
 
+// verify if user is alr loggedIn in all GET requests
+  const checkSession = (request,response)=> {
+    let userId = request.cookie.userId;
+     db.app.userRecord(userId, (error, result) => {
+    let hashedCookie = sha256(uname);
+
+    if( request.cookies.user === hashedCookie){
+
+  }
+
+
+
+
   const indexPage = (request, response) => {
     let userId = request.cookies.userId;
-      db.app.checkSession(userId, (error, loggedIn) => {
+
+//////////// DOUBLE CHECK METHOD TO VERIFY IF USER IS LOGGED IN ////////////
+      checkSession(userId, (error, loggedIn) => {
         if(loggedIn){
           db.app.getAll((error, allActivities) => {
             data = {
@@ -59,7 +74,7 @@ module.exports = (db) => {
     let address = request.body.address;
     let coach = request.body.coaching;
     let courtAccess = request.body.court_access;
-      // !!! VALIDATE IF USER ALR EXISTS !!! //
+     //////////// !!! VALIDATE IF USER ALR EXISTS !!! ////////////
       db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => {
         console.log("result in controller: ", result);
           if(error){
@@ -78,7 +93,7 @@ const loginUser = (request,response) => {
   let email = request.body.email;
   let pswd = request.body.pswd;
   console.log("in controller");
-    db.app.getUserRecord(email, pswd, (error, result) => {
+    db.app.verifyLogin(email, pswd, (error, result) => {
       if (error){
         console.log("controller error: ", error);
         const data = {
@@ -89,10 +104,10 @@ const loginUser = (request,response) => {
       }
       else{
         console.log('result in controller: ', result);
-        let hashedUname = sha256(result.rows[0].username);
+        let hashedUname = sha256(result[0].username);
         response.cookie('logged_in', true);
         response.cookie('user', hashedUname);
-        response.cookie('userId', result.rows[0].id);
+        response.cookie('userId', result[0].id);
         response.redirect("/dashboard");
       }
     });
@@ -116,11 +131,23 @@ const loginUser = (request,response) => {
     });
   }
 
-  const activityPage = (request, response) => {
 // query to get specific activity
-  // db.app.getActivityDetails()
-    response.render('app/Activity');
-  }
+  const activityPage = (request, response) => {
+    let userId = request.cookies.userId;
+        db.app.checkSession(userId, (error, loggedIn) => {
+          if(loggedIn){
+            db.app.getActivityDetails(activityId,(error, result) => {
+              data = {
+                activityDetails: result.rows[0]
+              }
+              response.render('app/Activity', data);
+            })
+          }
+          else{
+            response.render('app/Login');
+          }
+        })
+  };
 
 
 

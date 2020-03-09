@@ -22,7 +22,7 @@ class Index extends React.Component {
         const end = activity.end_at.replace('+08', '')
           const formattedEnd = moment(end).format('LT')
 
-        console.log('activity details: ',title, venue, date, formattedStart, formattedEnd)
+        console.log('activity details: ',activityId, title, venue, date, formattedStart, formattedEnd)
         return (
         <div className="card">
           <div className="card-body">

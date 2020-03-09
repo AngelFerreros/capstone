@@ -27,7 +27,7 @@ function activateAutocomplete() {
 
 var map;
   function initMap() {
-    let address = document.getElementById('place_address').innerHTML;
+    let address = document.getElementById('addressToMap').innerHTML;
       let geocoder = new google.maps.Geocoder();
         geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == 'OK') {

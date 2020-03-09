@@ -46,7 +46,7 @@ module.exports = (dbPoolInstance) => {
     });
   };
 
-  const getUserRecord = (email, pswd, callback) => {
+  const verifyLogin = (email, pswd, callback) => {
     let query = `SELECT * FROM users WHERE email ='`+email+`'`;
     console.log('query is ', query);
       dbPoolInstance.query(query, (error, result) => {
@@ -56,6 +56,8 @@ module.exports = (dbPoolInstance) => {
         }
         else {
           console.log('result in models: ', result);
+          console.log('pswd: ', pswd);
+
           let userPswd = result.rows[0].password;
           if (sha256(SALT + pswd) === userPswd) {
             callback(error, result.rows);
@@ -66,33 +68,43 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-  const checkSession = (userId, callback) => {
-    let loggedIn;
+  const userRecord = (userId, callback) => {
     const query = `SELECT * FROM users WHERE id ='`+userId+`'`;
     dbPoolInstance.query(query, (error, result) => {
       if (error){
         callback(error, null);
       }
       else {
-        if( sha256(result.rows[0].username) === request.cookies["user"] ){
-        loggedIn = true;
-        } else {
-        loggedIn = false;
-        }
-      callback(error, loggedIn);
+      callback(null, result.rows[0]);
       }
     });
   };
 
-  const userExists = (request,response) => {
-      db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => { });
+
+
+
+  const userExists = (param,callback) => {
+      dbPoolInstance.query(query, (error, result) =>{ });
   }
 
-  const getActivityDetails = ()=> {
-    db
+  const getActivityDetails = (activityId, callback)=> {
+    let query = `SELECT * FROM activities WHERE id =`+activityId;
+    dbPoolInstance.query(query, (error, result) => {
+    });
   }
+// query to insert activities into table
+
+
+
+// query to update activities
+
+
+
+// query to delete activities
+
 
 // query to check activities hosted and joined by user
+
 
 
 // query to insert user into join table (user joins activity)
@@ -113,17 +125,11 @@ module.exports = (dbPoolInstance) => {
   //   });
   // }
 
-
-
-
-
-
-
   return {
     getAll:getAll,
     recordUser:recordUser,
-    getUserRecord: getUserRecord,
-    checkSession: checkSession,
+    verifyLogin: verifyLogin,
+    userRecord: userRecord,
     userExists: userExists,
     getActivityDetails:getActivityDetails
     // insert: addNewActivity
