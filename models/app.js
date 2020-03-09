@@ -144,9 +144,8 @@ module.exports = (dbPoolInstance) => {
 
  }
 
-
 // query to update activity
-// const editActivity
+// const editActivity = (params, callback) => { dbPoolInstance.query(query, values,(error,result) => });
 
 // query to delete activity
 

@@ -179,10 +179,26 @@ const loginUser = (request,response) => {
       })
   };
 
-
   const edit = (request, response) => {
     //only host can edit own activity
+    let userId = request.cookies.userId;
+    let activityId = request.params.id;
+      db.app.getActivityDetails(activityId, (error, result) => {
+        if (error){
+          console.log('cannot edit due to: ', error);
+        } else {
+        db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
+            data = {
+              activityDetails: result[0],
+              attendeeArr: attendeeRes
+            }
+          response.render('app/Edit', data)
+        });
+        }
+      });
+  }
 
+  const updateActivity = (request, response) => {
 
   }
 
@@ -211,7 +227,8 @@ const loginUser = (request,response) => {
     organiseActivity: organiseActivity,
     activity: activityPage,
     players: playersIndex,
-    edit: edit
+    edit:edit,
+    updateActivity: updateActivity
   };
 
 }

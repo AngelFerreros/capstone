@@ -53,18 +53,28 @@ var map;
 initMap();
 
 function addDisable(){
-  console.log('clicked add')
-  let coachingSwitch = document.getElementById('coaching')
-  coachingSwitch.checked = false
-  coachingSwitch.disabled = true
+  console.log('clicked add');
+  let coachingSwitch = document.getElementById('coaching');
+  coachingSwitch.checked = false;
+  coachingSwitch.disabled = true;
 };
 
 function removeDisable(){
-  console.log('clicked remove')
-  let coachingSwitch = document.getElementById('coaching')
+  console.log('clicked remove');
+  let coachingSwitch = document.getElementById('coaching');
   coachingSwitch.disabled = false;
 };
 
-document.getElementById('beginner').addEventListener('click', addDisable)
-document.getElementById('intermediate').addEventListener('click', removeDisable)
-document.getElementById('competitive').addEventListener('click', removeDisable)
+document.getElementById('beginner').addEventListener('click', addDisable);
+document.getElementById('intermediate').addEventListener('click', removeDisable);
+document.getElementById('competitive').addEventListener('click', removeDisable);
+
+function hideJoinBtn(){
+  document.getElementById('join-btn').setAttribute('display','none');
+}
+
+function hideHostBtns(){
+  document.getElementById('edit-btn').setAttribute('display','none');
+  document.getElementById('delete-btn').setAttribute('display','none');
+
+}

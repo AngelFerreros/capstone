@@ -27,15 +27,17 @@ class Activity extends React.Component {
       let host = attendee.ishost;
       let hostDisplay;
         if(host){
-           hostDisplay = "(Host)"
-         return <li>{attendee.username} {hostDisplay}</li>
+           hostDisplay = "(Host)";
+           // hideJoinBtn();
+         return <li key = {id} value = {id}>{attendee.username} {hostDisplay} </li>
         } else {
+          // hideHostBtns()
          return <li>{attendee.username}</li>
         }
     });
 
     return (
-        <Layout>
+        <Layout onLoad>
           <Nav/>
             <div className="container">
                 <div className = "row">
@@ -53,17 +55,14 @@ class Activity extends React.Component {
                         <p>Attendees:</p>
                         <a href ="#"> <ul>{attendees} </ul> </a>
                         <form method = "POST" action = {joinUrl}>
-                          <input type = "submit" value = "Join"/>
+                          <input type = "submit" id = "join-btn" value = "Join"/>
                         </form>
                         <form method = "GET" action ={editUrl}>
-                          <input type = "submit" value = "Edit"/>
+                          <input type = "submit" id = "edit-btn" value = "Edit"/>
                         </form>
                         <form method = "POST" action = {deleteUrl}>
-                          <input type = "submit" value = "Delete"/>
+                          <input type = "submit" id = "delete-btn" value = "Delete"/>
                         </form>
-
-
-
                     </div>
                 </div>
             </div>

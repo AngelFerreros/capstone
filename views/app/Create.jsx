@@ -47,17 +47,17 @@ class Create extends React.Component {
                                     Doubles
                                   </label>
                               </div>
-                              <div class="form-check">
-                                <input class="category form-check-input" type="radio" name="category" id="training" value="4"/>
-                                  <label class="form-check-label" for="training">
+                              <div className="form-check">
+                                <input className="category form-check-input" type="radio" name="category" id="training" value="4"/>
+                                  <label className="form-check-label" for="training">
                                     Training
                                   </label>
                               </div>
                             </div>
 
-                          <div class="form-group">
+                          <div className="form-group">
                             <label for="players">Players Needed:</label>
-                            <select class="form-control" id="players" name = "players">
+                            <select className="form-control" id="players" name = "players">
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
@@ -71,26 +71,26 @@ class Create extends React.Component {
                           </div>
                            <div className="form-group">
                                <label for="date">Date:</label>
-                               <input type="date" class="form-control" id="date" name="date" required/>
+                               <input type="date" className="form-control" id="date" name="date" required/>
                                <div className="valid-feedback">Valid.</div>
                                <div className="invalid-feedback">Please fill out this field.</div>
                           </div>
                           <div className="form-group">
                                <label for="start">Start Time:</label>
-                               <input type="time" class="form-control" id="start" name="start" required/>
+                               <input type="time" className="form-control" id="start" name="start" required/>
                                <div className="valid-feedback">Valid.</div>
                                <div className="invalid-feedback">Please fill out this field.</div>
                           </div>
                            <div className="form-group">
                                <label for="end">End Time:</label>
-                               <input type="time" class="form-control" id="end" name="end" required/>
+                               <input type="time" className="form-control" id="end" name="end" required/>
                                <div className="valid-feedback">Valid.</div>
                                <div className="invalid-feedback">Please fill out this field.</div>
                           </div>
 
                           <div className="form-group">
                                <label for="address">Venue:</label>
-                               <input type="text" class="form-control" id="address" name="address" required/>
+                               <input type="text" className="form-control" id="address" name="address" required/>
                                <div className="valid-feedback">Valid.</div>
                                <div className="invalid-feedback">Please fill out this field.</div>
                           </div>
