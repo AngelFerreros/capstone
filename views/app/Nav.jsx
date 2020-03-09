@@ -2,7 +2,7 @@ const React = require("react");
 
 class Nav extends React.Component {
   render() {
-    let profilePath =  '/profile/'+this.props.userId;
+    let profilePath =  '/players/'+this.props.userId;
 
 
   return (

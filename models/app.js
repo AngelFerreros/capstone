@@ -47,7 +47,7 @@ module.exports = (dbPoolInstance) => {
     let query = `SELECT * FROM users WHERE email ='`+email+`'`;
     console.log('query is ', query);
       dbPoolInstance.query(query, (error, result) => {
-        if ( (error || result.rows[0] === undefined) ){
+        if ( (error) || (result.rows[0] === undefined) ){
           console.log("models error: ", error);
           callback(error, null);
         }
@@ -102,7 +102,7 @@ module.exports = (dbPoolInstance) => {
 
 // query to check attendees(incl.host) of an activity
   const getAttendees = (activityId, callback) => {
-    let query = 'SELECT activities_users.user_id, users.username from activities_users INNER JOIN users ON (activities_users.user_id = users.id) WHERE activities_users.activity_id='+activityId;
+    let query = 'SELECT activities_users.user_id, activities_users.isHost, users.username from activities_users INNER JOIN users ON (activities_users.user_id = users.id) WHERE activities_users.activity_id='+activityId;
     dbPoolInstance.query(query, (error, result) => {
        if( error ){
         callback(error, null);
@@ -115,8 +115,6 @@ module.exports = (dbPoolInstance) => {
       }
     });
  }
-
-
 
 // query to insert activities into table
   const insertActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
@@ -147,13 +145,10 @@ module.exports = (dbPoolInstance) => {
  }
 
 
-// query to update activities
+// query to update activity
+// const editActivity
 
-
-
-// query to delete activities
-
-
+// query to delete activity
 
 
 // query to check available slots

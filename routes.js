@@ -8,12 +8,15 @@ module.exports = (app, allModels) => {
   const controllerCallbacks = require('./controllers/app')(allModels);
 
   app.get('/', controllerCallbacks.landing)
-  app.get('/dashboard', controllerCallbacks.index);
+  app.get('/dashboard', controllerCallbacks.index)
   app.get('/organise', controllerCallbacks.create)
   app.get('/register', controllerCallbacks.register)
   app.get('/login', controllerCallbacks.login)
-  app.get('/profile/:userId', controllerCallbacks.profile)
+  app.get('/players/:userId', controllerCallbacks.profile)
   app.get('/activity/:id', controllerCallbacks.activity)
+  app.get('/activity/:id/edit', controllerCallbacks.edit)
+
+  app.get('/players', controllerCallbacks.players)
 
 
   app.post('/logout', controllerCallbacks.logout)

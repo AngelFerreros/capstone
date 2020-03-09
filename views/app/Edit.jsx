@@ -4,15 +4,12 @@ const Nav = require("./Nav");
 const moment = require("moment");
 moment().format();
 
-class Activity extends React.Component {
+class Edit extends React.Component {
 
   render() {
+    let postEdit = '/activity/'+this.props.activity.id+'/?_method=put' ;
+
     const activity = this.props.activityDetails;
-
-    let joinUrl = '/activity/'+activity.id+'/join' ;
-    let editUrl = '/activity/'+activity.id+'/edit' ;
-    let deleteUrl = '/activity/'+activity.id+'/delete';
-
     const attendeeArr = this.props.attendeeArr;
       const title = activity.title.toUpperCase();
       const description = activity.description;
@@ -52,14 +49,11 @@ class Activity extends React.Component {
                         <div id = "map"> </div>
                         <p>Attendees:</p>
                         <a href ="#"> <ul>{attendees} </ul> </a>
-                        <form method = "POST" action = {joinUrl}>
+                        <form method = "POST" action ={postEdit}>
+                          <input type = "submit" value = "Confirm"/>
+                        </form>
+                        <form method = "GET" action = {joinUrl}>
                           <input type = "submit" value = "Join"/>
-                        </form>
-                        <form method = "GET" action ={editUrl}>
-                          <input type = "submit" value = "Edit"/>
-                        </form>
-                        <form method = "POST" action = {deleteUrl}>
-                          <input type = "submit" value = "Delete"/>
                         </form>
 
 
@@ -72,4 +66,4 @@ class Activity extends React.Component {
   }
 }
 
-module.exports = Activity;
+module.exports = Edit;

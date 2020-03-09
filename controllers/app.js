@@ -100,7 +100,7 @@ const loginUser = (request,response) => {
   let pswd = request.body.pswd;
   console.log("in controller");
     db.app.verifyLogin(email, pswd, (error, result) => {
-      if (error){
+      if (error || result === null){
         console.log("controller error: ", error);
         const data = {
             error: error,
@@ -169,7 +169,6 @@ const loginUser = (request,response) => {
           console.log(error)
         } else {
           db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
-            console.log('attendees of activity: ', attendeeRes)
             data = {
               activityDetails: result[0],
               attendeeArr: attendeeRes
@@ -181,6 +180,16 @@ const loginUser = (request,response) => {
   };
 
 
+  const edit = (request, response) => {
+    //only host can edit own activity
+
+
+  }
+
+
+
+
+  const playersIndex = () => {}
 
 
 
@@ -200,7 +209,9 @@ const loginUser = (request,response) => {
     logout: logout,
     landing: landing,
     organiseActivity: organiseActivity,
-    activity: activityPage
+    activity: activityPage,
+    players: playersIndex,
+    edit: edit
   };
 
 }
