@@ -27,7 +27,8 @@ function activateAutocomplete() {
 
 var map;
   function initMap() {
-    let address = document.getElementById('addressToMap').innerHTML;
+    let address = document.getElementById('addressToMap').innerText;
+    console.log('address is:', address)
       let geocoder = new google.maps.Geocoder();
         geocoder.geocode( { 'address': address}, function(results, status) {
           if (status == 'OK') {
@@ -48,6 +49,7 @@ var map;
             }
           })
         };
+initMap();
 
 function addDisable(){
   console.log('clicked add')
