@@ -8,8 +8,12 @@ class Profile extends React.Component {
 
   render() {
     let name = this.props.details.username;
-    let skillLevel = this.props.level_id
-      let skillName = skillLevel === 1 ? "Beginner" : (skillLevel === 2 ? "Intermediate" : "Competitive")
+    let skillLevel = this.props.level_id;
+      let skillName = skillLevel === 1 ? "Beginner" : (skillLevel === 2 ? "Intermediate" : "Competitive");
+    let canTeach = this.props.can_coach;
+      let canTeachValue = (canTeach === 'f' || canTeach === null) ? "No" : "Yes";
+
+    let courtAccess = this.props.court_access === true ? "Yes" : "No";
 
     return (
         <Layout>
@@ -20,7 +24,7 @@ class Profile extends React.Component {
                     <h2>Player Profile:</h2>
                         <p>Username: {name} </p>
                         <p>Skill: {skillName} </p>
-                        <p>Willing To Teach: {} </p>
+                        <p>Willing To Teach: {canTeachValue} </p>
 
                         <p>Activities Hosted: {} </p>
                         <p>Activities Joined: {} </p>

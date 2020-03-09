@@ -12,7 +12,7 @@ module.exports = (db) => {
 // verify if user is alr loggedIn in all GET requests
   // const checkSession = (request, response )=> {
   //   let loggedIn;
-  //     db.app.userRecord(userId, (error, result) => {
+  //     db.app.getUserRecord(userId, (error, result) => {
   //       let uname = result.username;
   //       let hashedCookie = sha256(uname);
   //     })
@@ -61,7 +61,7 @@ module.exports = (db) => {
 // get user data and activities joined/hosted
   const getProfile = (request, response) => {
     let userId = request.cookies.userId;
-      db.app.userRecord(userId, (error, result) => {
+      db.app.getUserRecord(userId, (error, result) => {
         console.log('user record: ', result);
         data = {
           userId: request.cookies.userId,
@@ -127,14 +127,36 @@ const loginUser = (request,response) => {
     response.redirect("/");
   };
 
-// let loggedin user be able to organise activity,once created
-  const organiseActivity = (request,response) => {
-    db.app.insert((error, res ) => {
-      data = {
+// let loggedin user be able to organise activity
+  const organiseActivity = async (request,response) => {
+    let userId = request.cookies.userId;
+    let title = request.body.title;
+    let description = request.body.description;
+    let category = request.body.category;
+    let slots = request.body.players;
+    let date = request.body.date;
+    let start_at = request.body.start;
+    let end_at = request.body.end;
+    let address = request.body.address;
 
+    db.app.insertActivity( userId, category, title, description, date, start_at, end_at, address, slots,(error, result ) => {
+      if (error){
+        console.log(error);
+      } else {
+        console.log('activity created: ', result)
+        let isHost = true;
+        let activityId = result.id
+        db.app.joinActivity(userId, isHost, activityId, (joinErr, joinRes) => {
+          if (joinErr){
+        console.log(joinErr);
+        response.render('/organise');
+        } else {
+            console.log(joinRes);
+            response.redirect('/dashboard');
+        }
+        });
       }
-      response.render('app/Profile', data);
-    });
+    })
   }
 
 // query to get specific activity

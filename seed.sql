@@ -37,7 +37,6 @@
 
 
 -- INSERT INTO activities_users
--- (user_id, activity_id)
+-- (user_id, isHost, activity_id)
 -- VALUES
--- (1,1), (5,2),(6,3),(3,4), (10,5),(8,6);
-
+-- (1,true,1), (5,true, 2),(6,true,3),(3,true,4), (10,true,5),(8,true,6);

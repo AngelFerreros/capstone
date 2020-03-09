@@ -24,6 +24,7 @@ function activateAutocomplete() {
   };
   let autocomplete = new google.maps.places.Autocomplete(input,options);
 };
+ activateAutocomplete()
 
 var map;
   function initMap() {

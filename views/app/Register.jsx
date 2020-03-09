@@ -66,8 +66,6 @@ class Register extends React.Component {
                               <input type="checkbox" className="custom-control-input" name = "court_access" id = "court_access"/>
                               <label className="custom-control-label" for="court_access">Access to court</label>
                             </div>
-
-
                           <input type="submit" className="btn btn-primary" value = "Submit"/>
                         </form>
 

@@ -33,12 +33,12 @@ module.exports = (dbPoolInstance) => {
 
     let query = 'INSERT INTO users (level_id, email, password, username, address, can_coach, court_access) VALUES ($1, $2, $3, $4, $5, $6,$7) RETURNING *';
     let values = [skillLevel, email, hashedPw, uname, address, coach, courtAccess];
-    dbPoolInstance.query(query, values, (err, result) => {
-      if (err){
-        callback(err, null);
+    dbPoolInstance.query(query, values, (error, result) => {
+      if (error){
+        callback(error, null);
       }
       else {
-        callback(err, result.rows);
+        callback(null, result.rows);
       }
     });
   };
@@ -65,7 +65,7 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-  const userRecord = (userId, callback) => {
+  const getUserRecord = (userId, callback) => {
     const query = `SELECT * FROM users WHERE id =`+userId;
     dbPoolInstance.query(query, (error, result) => {
       if (error){
@@ -100,9 +100,35 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-
-
 // query to insert activities into table
+  const insertActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
+    let values = [userId, category, title, description, date, start_at, end_at, address, slots];
+    console.log('Values to insert: ', values)
+    let insertQuery = 'INSERT INTO activities (user_id, category_id, title, description, activity_date, start_at, end_at, address, slots)VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *';
+    dbPoolInstance.query(insertQuery, values, (error, result) => {
+      if (error){
+        callback(error, null);
+      } else {
+        callback(null, result.rows[0]);
+      }
+    })
+  }
+
+// query to insert user into join table (user joins/hosts activity)
+  const joinActivity = (userId, isHost, activityId, callback) => {
+    let values = [userId, isHost, activityId];
+    let insertQuery = 'INSERT INTO activities_users (user_id, isHost,activity_id) VALUES ($1,$2,$3) RETURNING *';
+    dbPoolInstance.query(insertQuery, values, (error, result) => {
+      if (error){
+        callback(error, null);
+      } else {
+        callback(null, result.rows[0]);
+      }
+    })
+
+ }
+
+
 
 
 
@@ -114,23 +140,13 @@ module.exports = (dbPoolInstance) => {
 
 
 // query to check activities hosted and joined by user
+  //to display in profile page (a)
 
 
-// query to insert user into join table (user joins activity)
-
-
-//query to automatically insert user as host in activity organised
 
 
 // query to check available slots
 
-
-
-// for post method to create activity
-  // const addNewActivity = (data, callback) => {
-  //   let insertQuery = 'INSERT INTO activities (user_id, category_id, title, description, activity_date, start_at, end_at, address, slots)VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)'
-  // let values = [];
-  //   db.dbPoolInstance.query(insertQuery, values, (error, res)=>{
 
 
   //   });
@@ -140,9 +156,10 @@ module.exports = (dbPoolInstance) => {
     getAll:getAll,
     recordUser:recordUser,
     verifyLogin: verifyLogin,
-    userRecord: userRecord,
+    getUserRecord: getUserRecord,
     userExists: userExists,
-    getActivityDetails:getActivityDetails
-    // insert: addNewActivity
+    getActivityDetails:getActivityDetails,
+    insertActivity: insertActivity,
+    joinActivity: joinActivity
   };
 };

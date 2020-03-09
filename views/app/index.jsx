@@ -13,17 +13,17 @@ class Index extends React.Component {
     let card;
     if (activityArr){
       card = activityArr.map( (activity,index) => {
-        const activityId = activity.id
-        let url = '/activity/'+activityId
-        const title = activity.title
-        const venue = activity.address
-        const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY")
-        const start = activity.start_at.replace('+08', '')
-          const formattedStart = moment(start).format('LT')
-        const end = activity.end_at.replace('+08', '')
-          const formattedEnd = moment(end).format('LT')
+        const activityId = activity.id;
+        let url = '/activity/'+activityId;
+        const title = activity.title;
+        const venue = activity.address;
+        const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
+        const start = activity.start_at.replace('+08', '');
+          const formattedStart = moment(start).format('LT');
+        const end = activity.end_at.replace('+08', '');
+          const formattedEnd = moment(end).format('LT');
 
-        console.log('activity details: ',activityId, title, venue, date, formattedStart, formattedEnd)
+        console.log('activity details: ',activityId, title, venue, date, formattedStart, formattedEnd);
         return (
         <div className="card">
           <div className="card-body">

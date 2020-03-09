@@ -15,7 +15,7 @@ class Create extends React.Component {
                 <div className = "row">
                   <div className="col">
                     <h2>Organise an Activity:</h2>
-                        <form method = "POST" action="/" className="needs-validation" noValidate>
+                        <form method = "POST" action="/organise" className="needs-validation" noValidate>
                           <div className="form-group">
                             <label for="title">Title:</label>
                             <input type="text" className="form-control" id="title" placeholder="Activity Title" name="title" required/>
@@ -30,25 +30,25 @@ class Create extends React.Component {
                           </div>
                           <div className="form-group" required>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="category" id="rally" value="1" />
+                                <input className="category form-check-input" type="radio" name="category" id="rally" value="1" />
                                   <label className="form-check-label" for="rally">
                                     Rally
                                   </label>
                               </div>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="category" id="singles" value="2"/>
+                                <input className="category form-check-input" type="radio" name="category" id="singles" value="2"/>
                                   <label className="form-check-label" for="singles">
                                     Singles
                                   </label>
                               </div>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="category" id="doubles" value="3"/>
+                                <input className="category form-check-input" type="radio" name="category" id="doubles" value="3"/>
                                   <label className="form-check-label" for="doubles">
                                     Doubles
                                   </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="category" id="training" value="4"/>
+                                <input class="category form-check-input" type="radio" name="category" id="training" value="4"/>
                                   <label class="form-check-label" for="training">
                                     Training
                                   </label>
@@ -56,8 +56,8 @@ class Create extends React.Component {
                             </div>
 
                           <div class="form-group">
-                            <label for="min">Players Needed:</label>
-                            <select class="form-control" id="min">
+                            <label for="players">Players Needed:</label>
+                            <select class="form-control" id="players" name = "players">
                               <option>1</option>
                               <option>2</option>
                               <option>3</option>
@@ -76,8 +76,14 @@ class Create extends React.Component {
                                <div className="invalid-feedback">Please fill out this field.</div>
                           </div>
                           <div className="form-group">
-                               <label for="time">Time:</label>
-                               <input type="time" class="form-control" id="time" name="time" required/>
+                               <label for="start">Start Time:</label>
+                               <input type="time" class="form-control" id="start" name="start" required/>
+                               <div className="valid-feedback">Valid.</div>
+                               <div className="invalid-feedback">Please fill out this field.</div>
+                          </div>
+                           <div className="form-group">
+                               <label for="end">End Time:</label>
+                               <input type="time" class="form-control" id="end" name="end" required/>
                                <div className="valid-feedback">Valid.</div>
                                <div className="invalid-feedback">Please fill out this field.</div>
                           </div>

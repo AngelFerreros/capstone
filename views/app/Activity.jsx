@@ -10,14 +10,14 @@ class Activity extends React.Component {
     const activity = this.props.activityDetails
     console.log('ACTIVITY: ', activity)
 
-    const title = activity.title.toUpperCase()
-    const description = activity.description
-    const venue = activity.address
-    const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY")
-    const start = activity.start_at.replace('+08', '')
-    const formattedStart = moment(start).format('LT')
-    const end = activity.end_at.replace('+08', '')
-    const formattedEnd = moment(end).format('LT')
+    const title = activity.title.toUpperCase();
+    const description = activity.description;
+    const venue = activity.address;
+    const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
+    const start = activity.start_at.replace('+08', '');
+    const formattedStart = moment(start).format('LT');
+    const end = activity.end_at.replace('+08', '');
+    const formattedEnd = moment(end).format('LT');
 
     return (
         <Layout>
