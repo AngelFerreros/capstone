@@ -179,13 +179,16 @@ const loginUser = (request,response) => {
       })
   };
 
-  const edit = (request, response) => {
+  const editForm = (request, response) => {
     //only host can edit own activity
     let userId = request.cookies.userId;
     let activityId = request.params.id;
       db.app.getActivityDetails(activityId, (error, result) => {
+        let activityHost = result[0].user_id;
         if (error){
           console.log('cannot edit due to: ', error);
+        } else if(userId != activityHost){
+          response.redirect('/activity/'+activityId)
         } else {
         db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
             data = {
@@ -199,7 +202,25 @@ const loginUser = (request,response) => {
   }
 
   const updateActivity = (request, response) => {
+    let userId = request.cookies.userId;
+    let activityId = request.params.id;
+    let title = request.body.title;
+    let description = request.body.description;
+    let category = request.body.category;
+    let slots = request.body.players;
+    let date = request.body.date;
+    let start_at = request.body.start;
+    let end_at = request.body.end;
+    let address = request.body.address;
 
+      db.app.updateActivity(userId, category, title, description, date, start_at, end_at, address, slots, (error,result) => {
+        if(error){
+            response.redirect('app/Edit');
+          } else {
+            console.log('updated result in controller: ', result)
+            response.redirect('/activity/'+activityId);
+          }
+      })
   }
 
 
@@ -227,7 +248,7 @@ const loginUser = (request,response) => {
     organiseActivity: organiseActivity,
     activity: activityPage,
     players: playersIndex,
-    edit:edit,
+    edit:editForm,
     updateActivity: updateActivity
   };
 

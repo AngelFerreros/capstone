@@ -44,13 +44,13 @@ class Edit extends React.Component {
                     <form method = "POST" action={postEdit} className="needs-validation" noValidate>
                       <div className="form-group">
                         <label for="title">Title:</label>
-                            <input type="text" className="form-control" id="title" value ={title} name="title" required/>
+                            <input type="text" className="form-control" id="title" defaultValue = {title} name="title" required/>
                             <div className="valid-feedback">Valid.</div>
                             <div className="invalid-feedback">Please fill out this field.</div>
                       </div>
                       <div className="form-group">
                         <label for="description">Description:</label>
-                            <input type="text" className="form-control" id="description" value ={description} name="description" required/>
+                            <input type="text" className="form-control" id="description" defaultValue ={description} name="description" required/>
                             <div className="valid-feedback">Valid.</div>
                             <div className="invalid-feedback">Please fill out this field.</div>
                       </div>
@@ -89,26 +89,26 @@ class Edit extends React.Component {
                       </div>
                       <div className="form-group">
                             <label for="date">Date:</label>
-                            <input type="date" className="form-control" id="date" name="date" value={date}required/>
+                            <input type="date" className="form-control" id="date" name="date" defaultValue = {date} required/>
                             <div className="valid-feedback">Valid.</div>
                             <div className="invalid-feedback">Please fill out this field.</div>
                       </div>
                       <div className="form-group">
                             <label for="start">Start Time:</label>
-                            <input type="time" className="form-control" id="start" name="start" value = {start} required/>
+                            <input type="time" className="form-control" id="start" name="start" defaultValue = {start} required/>
                             <div className="valid-feedback">Valid.</div>
                             <div className="invalid-feedback">Please fill out this field.</div>
                       </div>
                         <div className="form-group">
                             <label for="end">End Time:</label>
-                            <input type="time" className="form-control" id="end" name="end" value = {end} required/>
+                            <input type="time" className="form-control" id="end" name="end" defaultValue = {end} required/>
                             <div className="valid-feedback">Valid.</div>
                             <div className="invalid-feedback">Please fill out this field.</div>
                         </div>
 
                         <div className="form-group">
                             <label for="address">Venue:</label>
-                            <input type="text" className="form-control" id="address" name="address" value = {venue}required/>
+                            <input type="text" className="form-control" id="address" name="address" defaultValue = {venue}required/>
                             <div className="valid-feedback">Valid.</div>
                             <div className="invalid-feedback">Please fill out this field.</div>
                         </div>

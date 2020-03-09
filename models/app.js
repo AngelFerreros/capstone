@@ -78,8 +78,6 @@ module.exports = (dbPoolInstance) => {
     });
   };
 
-
-
 // to check if user exists on registering
   const userExists = (param,callback) => {
       dbPoolInstance.query(query, (error, result) =>{ });
@@ -141,11 +139,23 @@ module.exports = (dbPoolInstance) => {
         callback(null, result.rows[0]);
       }
     })
-
  }
 
 // query to update activity
-// const editActivity = (params, callback) => { dbPoolInstance.query(query, values,(error,result) => });
+  const updateActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
+    let values = [userId, category, title, description, date, start_at, end_at, address, slots];
+    let query = 'UPDATE activities SET (category_id, title, description, activity_date, start_at, end_at, address, slots) = ($1,$2,$3,$4,$5,$6,$7,$8) WHERE user_id='+userId+' RETURNING *';
+    dbPoolInstance.query(query, values,(error,result) => {
+      if(error){
+        callback(error,null)
+      }else{
+        console.log('update result in model:', result)
+        callback(null, result.rows[0]);
+      }
+    });
+  }
+
+
 
 // query to delete activity
 
@@ -166,6 +176,8 @@ module.exports = (dbPoolInstance) => {
     getActivityDetails:getActivityDetails,
     insertActivity: insertActivity,
     joinActivity: joinActivity,
-    getAttendees: getAttendees
+    getAttendees: getAttendees,
+    updateActivity: updateActivity
+
   };
 };
