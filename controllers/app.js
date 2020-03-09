@@ -172,7 +172,7 @@ const loginUser = (request,response) => {
             console.log('attendees of activity: ', attendeeRes)
             data = {
               activityDetails: result[0],
-              attendees: attendeeRes
+              attendeeArr: attendeeRes
             }
           response.render('app/Activity', data);
           });

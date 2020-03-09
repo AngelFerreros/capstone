@@ -7,8 +7,9 @@ moment().format();
 class Activity extends React.Component {
 
   render() {
-    const activity = this.props.activityDetails
-    console.log('ACTIVITY: ', activity)
+    const activity = this.props.activityDetails;
+    const attendeeArr = this.props.attendeeArr;
+    // console.log('ACTIVITY: ', activity)
 
     const title = activity.title.toUpperCase();
     const description = activity.description;
@@ -18,6 +19,10 @@ class Activity extends React.Component {
     const formattedStart = moment(start).format('LT');
     const end = activity.end_at.replace('+08', '');
     const formattedEnd = moment(end).format('LT');
+
+    const attendees = attendeeArr.map( (attendee , id) => {
+       return <li>{attendee.username}</li>
+    });
 
     return (
         <Layout>
@@ -35,7 +40,8 @@ class Activity extends React.Component {
                         <p>Venue:</p>
                         <p id = "addressToMap">{venue}</p>
                         <div id = "map"> </div>
-                        <p>Attendees:</p><span> (slots left i.e 2/4) </span>
+                        <p>Attendees:</p>
+                        <ul> <a href ="#"> {attendees} </a> </ul>
                         <button> Join or Delete</button>
 
                     </div>
