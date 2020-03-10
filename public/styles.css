@@ -1,17 +1,15 @@
-html, body {
+/*html, body {
     margin: 0;
     height: 100%;
     position: relative;
 }
-
+*/
 #footer {
     background: #EEFF32;
-    /*background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(94,223,34,0.8785889355742297) 100%);;*/
-    position: absolute;
     color: #009EFF;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    height:65px;
 }
 
 #background{
@@ -33,6 +31,21 @@ html, body {
     size:200px;
 }
 
+.container{
+    min-height:75vh;
+    max-width: 80vw;
+}
+
+.page-header{
+
+}
+
+
+.form{
+    max-width: 60%;
+    margin: 0 auto;
+}
+
 .navbar{
     background: rgb(34,193,195);
     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(94,223,34,0.8785889355742297) 100%);
@@ -51,5 +64,4 @@ html, body {
     justify-content: space-around;
 
 }
-
 

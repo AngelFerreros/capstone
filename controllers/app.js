@@ -80,7 +80,7 @@ module.exports = (db) => {
     let address = request.body.address;
     let coach = request.body.coaching;
     let courtAccess = request.body.court_access;
-     //////////// !!! VALIDATE IF USER ALR EXISTS !!! ////////////
+     ////////////VALIDATE IF USER ALR EXISTS////////////
       db.app.recordUser(skillLevel, email, pswd, uname, address, coach, courtAccess, (error, result) => {
         console.log("result in controller: ", result);
           if(error){
@@ -223,7 +223,29 @@ const loginUser = (request,response) => {
       })
   }
 
+  const deleteActivity = (request, response) => {
+    let activityId = request.params.id;
+    db.app.deleteActivity(activityId, (error,result) => {
 
+    });
+
+  }
+
+
+  const joinActivity = (request, response) => {
+    let userId = request.cookies.userId;
+    let activityId = request.params.id;
+    let isHost = false;
+    db.app.joinActivity(userId, isHost, activityId, (error,result) => {
+      if (error){
+        console.log('error: ', error)
+        response.redirect('/activity/'+activityId)
+      } else {
+        response.redirect('/activity/'+activityId);
+      }
+    });
+
+  }
 
 
   const playersIndex = () => {}
@@ -249,7 +271,9 @@ const loginUser = (request,response) => {
     activity: activityPage,
     players: playersIndex,
     edit:editForm,
-    updateActivity: updateActivity
+    updateActivity: updateActivity,
+    deleteActivity:deleteActivity,
+    join: joinActivity
   };
 
 }

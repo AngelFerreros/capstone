@@ -11,10 +11,10 @@ class Register extends React.Component {
         <Layout>
             <div className="container text-center" id="register" >
                 <div className="row">
-                  <div className="col">
+                  <div className="col form">
                     <h2>Join our Community</h2>
                     <p>{errorMsg}</p>
-                        <form method = "POST" action="/register" className="needs-validation" noValidate>
+                        <form method = "POST" action="/register" className="needs-validation form" noValidate>
                           <div className="form-group">
                             <label for="email">Email:</label>
                             <input type="email" className="form-control" id="email" name="email" required/>

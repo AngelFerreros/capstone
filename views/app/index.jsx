@@ -19,7 +19,10 @@ class Index extends React.Component {
         const venue = activity.address;
         const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
         const start = activity.start_at.replace('+08', '');
-          const formattedStart = moment(start).format('LT');
+
+          const formattedStart = moment(activity.start_at).format('LT');
+        console.log('dfghdgrd', formattedStart)
+
         const end = activity.end_at.replace('+08', '');
           const formattedEnd = moment(end).format('LT');
 
@@ -31,7 +34,7 @@ class Index extends React.Component {
               <h5 className="card-title">{title}</h5>
                 <p className="card-text">Venue: <span> {venue} </span> </p>
                 <p className="card-text">Date: <span> {date} </span> </p>
-                <p className="card-text">Time: <span> {formattedStart} - {end}</span> </p>
+                <p className="card-text">Time: <span> {start} - {end}</span> </p>
                   <a href={url} className="btn btn-info">View More</a>
           </div>
         </div>

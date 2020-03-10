@@ -13,7 +13,7 @@ class Create extends React.Component {
           <Nav/>
             <div className="container">
                 <div className = "row">
-                  <div className="col">
+                  <div className="col form">
                     <h2>Organise an Activity:</h2>
                         <form method = "POST" action="/organise" className="needs-validation" noValidate>
                           <div className="form-group">

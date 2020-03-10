@@ -23,9 +23,10 @@ module.exports = (app, allModels) => {
   app.post('/register', controllerCallbacks.registerUser)
   app.post('/login' , controllerCallbacks.loginUser)
   app.post('/organise' , controllerCallbacks.organiseActivity)
+  app.post('/activity/:id', controllerCallbacks.join)
+
   app.put('/activity/:id',controllerCallbacks.updateActivity)
-
-
+  app.delete('/activity/:id', controllerCallbacks.deleteActivity)
 
 
 };

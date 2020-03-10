@@ -9,7 +9,7 @@ class Activity extends React.Component {
   render() {
     const activity = this.props.activityDetails;
 
-    let joinUrl = '/activity/'+activity.id+'/join' ;
+    let joinUrl = '/activity/'+activity.id ;
     let editUrl = '/activity/'+activity.id+'/edit' ;
     let deleteUrl = '/activity/'+activity.id+'/delete';
 

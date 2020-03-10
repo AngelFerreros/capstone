@@ -39,7 +39,7 @@ class Edit extends React.Component {
           <Nav/>
             <div className="container">
                 <div className = "row">
-                  <div className="col">
+                  <div className="col form">
                     <h2>Activity Details:</h2>
                     <form method = "POST" action={postEdit} className="needs-validation" noValidate>
                       <div className="form-group">

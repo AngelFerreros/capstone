@@ -157,17 +157,18 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-
-
 // query to delete activity
+  const deleteActivity = (activityId, callback) => {
+    let query = 'DELETE FROM activities WHERE activity_id ='+activityId;
+    dbPoolInstance.query(query, (error,result) => {
+
+    });
+  }
 
 
-// query to check available slots
 
+//query to check available slots
 
-
-  //   });
-  // }
 
   return {
     getAll:getAll,
@@ -179,7 +180,7 @@ module.exports = (dbPoolInstance) => {
     insertActivity: insertActivity,
     joinActivity: joinActivity,
     getAttendees: getAttendees,
-    updateActivity: updateActivity
-
+    updateActivity: updateActivity,
+    deleteActivity:deleteActivity,
   };
-};
+}

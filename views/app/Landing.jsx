@@ -9,9 +9,9 @@ class Landing extends React.Component {
             <div className="container text-center" >
                 <div className="row" style = {{backgroundColor: "#FFFFFF"}}>
                     <div className = "col-8">
-                        <div className= "page-header">
-                            <h3>Content</h3>
-                            <div className= "tagline"><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+                        <div className= "page-header d-flex">
+                            <h3>Game,Set,Match!</h3>
+                            <div className= "tagline"><p>The Community for Tennis Players </p>
                             </div>
                         </div>
                     </div>

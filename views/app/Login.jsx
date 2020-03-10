@@ -9,7 +9,7 @@ class Login extends React.Component {
       <Layout>
             <div className="container text-center" >
                 <div className="row">
-                  <div className="col">
+                  <div className="col form">
                     <h2>Log In</h2>
                       <p>{errorMsg}</p>
                         <form method = "POST" action="/login" className="needs-validation" noValidate>
