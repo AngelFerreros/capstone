@@ -21,7 +21,7 @@ class Nav extends React.Component {
               <li className="nav-item active">
                 <a className="nav-link" href={profilePath}> Profile </a>
               </li>
-                <a className="nav-link" href="#">Discover People </a>
+                <a className="nav-link" href="/players">Discover People </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/organise"> Organise an Activity</a>

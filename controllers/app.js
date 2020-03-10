@@ -169,8 +169,9 @@ const loginUser = (request,response) => {
           console.log(error)
         } else {
           db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
+             console.log('attendee result in controller:' , attendeeRes)
             let isAttending = false;
-            for (let i = 0;  i < attendeeRes.length;i++) {
+            for (let i = 0;  i < attendeeRes.length; i++) {
               let attendeeId = attendeeRes[i].user_id;
                   console.log('user iddd:',userId)
                 if (attendeeId === userId){
@@ -190,7 +191,7 @@ const loginUser = (request,response) => {
       })
   };
 
-  const editForm = (request, response) => {
+  const editActivity = (request, response) => {
     //only host can edit own activity
     let userId = request.cookies.userId;
     let activityId = request.params.id;
@@ -237,7 +238,13 @@ const loginUser = (request,response) => {
   const deleteActivity = (request, response) => {
     let activityId = request.params.id;
     db.app.deleteActivity(activityId, (error,result) => {
-
+      if (error){
+        console.log('error: ', error)
+        response.sendStatus(500)
+        // response.render('app/Activity')
+      } else {
+        response.redirect('app/index');
+      }
     });
 
   }
@@ -271,10 +278,21 @@ const loginUser = (request,response) => {
     });
   }
 
+  const playersIndex = (request,response) => {
+    let userId = request.cookies.userId;
+    db.app.getPlayers(userId, (error, result)=> {
+      if (error){
+        response.sendStatus(500)
+      }else {
+        data = {
+          userId:request.cookies.userId,
+          players: result
+        }
+      response.render('app/Players', data);
+      }
+    });
 
-
-
-  const playersIndex = () => {}
+  }
 
 
 
@@ -296,11 +314,12 @@ const loginUser = (request,response) => {
     organiseActivity: organiseActivity,
     activity: activityPage,
     players: playersIndex,
-    edit:editForm,
+    editActivity:editActivity,
     updateActivity: updateActivity,
     deleteActivity:deleteActivity,
     join: joinActivity,
-    exitActivity: exitActivity
+    exitActivity: exitActivity,
+
   };
 
 }

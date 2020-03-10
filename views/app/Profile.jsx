@@ -25,6 +25,8 @@ class Profile extends React.Component {
                         <p>Username: {name} </p>
                         <p>Skill: {skillName} </p>
                         <p>Willing To Teach: {canTeachValue} </p>
+                        <p>Court Access: {courtAccess} </p>
+
 
                         <p>Activities Hosted: {} </p>
                         <p>Activities Joined: {} </p>

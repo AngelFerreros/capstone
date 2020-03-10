@@ -14,7 +14,7 @@ module.exports = (app, allModels) => {
   app.get('/login', controllerCallbacks.login)
   app.get('/players/:userId', controllerCallbacks.profile)
   app.get('/activity/:id', controllerCallbacks.activity)
-  app.get('/activity/:id/edit', controllerCallbacks.edit)
+  app.get('/activity/:id/edit', controllerCallbacks.editActivity)
   app.get('/players', controllerCallbacks.players)
 
 

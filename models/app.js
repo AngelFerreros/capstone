@@ -106,6 +106,7 @@ module.exports = (dbPoolInstance) => {
         callback(error, null);
       }else{
         if( result.rows.length > 0 ){
+          console.log('result in models: ', result)
           callback(null, result.rows);
         }else{
           callback(null, null);
@@ -171,17 +172,34 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-// query to delete activity
+// query for owner to delete activity
   const deleteActivity = (activityId, callback) => {
     let query = 'DELETE FROM activities WHERE activity_id ='+activityId;
     dbPoolInstance.query(query, (error,result) => {
-
+      if(error){
+        callback(error,null)
+      }else{
+        console.log('deleted:', result)
+        callback(null, result.rows[0]);
+      }
     });
   }
 
+  const getPlayers = (userId, callback) => {
+    let query = `SELECT * FROM users WHERE NOT id =`+userId;
+    dbPoolInstance.query(query, (error, result) => {
+      if( error ){
+        callback(error, null);
+      }else{
+        if( result.rows.length > 0 ){
+          callback(null, result.rows);
+        }else{
+          callback(null, null);
+        }
+      }
+    });
+  }
 
-
-//query to check available slots
 
 
   return {
@@ -196,6 +214,7 @@ module.exports = (dbPoolInstance) => {
     getAttendees: getAttendees,
     updateActivity: updateActivity,
     deleteActivity:deleteActivity,
-    exitActivity:exitActivity
+    exitActivity:exitActivity,
+    getPlayers: getPlayers
   };
 }

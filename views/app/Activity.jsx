@@ -56,6 +56,7 @@ class Activity extends React.Component {
                         <div id = "map"> </div>
                         <p>Attendees:</p>
                         <a href ="#"> <ul>{attendees} </ul> </a>
+                        <p>Slots:</p>
 
                         <form method = "POST" action = {joinUrl}>
                           <input type = "submit" id = "join-btn" value = "Join" />
