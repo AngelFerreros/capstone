@@ -143,8 +143,10 @@ module.exports = (dbPoolInstance) => {
 
 // query to update activity
   const updateActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
-    let values = [userId, category, title, description, date, start_at, end_at, address, slots];
+    let values = [category, title, description, date, start_at, end_at, address, slots];
     let query = 'UPDATE activities SET (category_id, title, description, activity_date, start_at, end_at, address, slots) = ($1,$2,$3,$4,$5,$6,$7,$8) WHERE user_id='+userId+' RETURNING *';
+    console.log('update query:', query)
+
     dbPoolInstance.query(query, values,(error,result) => {
       if(error){
         callback(error,null)
