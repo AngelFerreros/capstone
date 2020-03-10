@@ -69,6 +69,19 @@ document.getElementById('beginner').addEventListener('click', addDisable);
 document.getElementById('intermediate').addEventListener('click', removeDisable);
 document.getElementById('competitive').addEventListener('click', removeDisable);
 
+// function dateValidation(){
+//   console.log('validating date');
+//   let dateField = document.getElementById('date');
+//     let dateInput = dateField.value;
+//   let today = Date.now();
+//   if(dateInput >= today ){
+//   }
+// }
+// let form = document.getElementsByClassName('create-form')
+// form.addEventListener('submit', dateValidation);
+
+
+
 
 // function hideJoinBtn(){
 //   document.getElementById('join-btn').setAttribute('display','none');

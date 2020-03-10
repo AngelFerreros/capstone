@@ -10,7 +10,7 @@ class Register extends React.Component {
     return(
         <Layout>
             <div className="container text-center" id="register" >
-                <div className="row">
+                <div className="row main-row">
                   <div className="col form">
                     <h2>Join our Community</h2>
                     <p>{errorMsg}</p>

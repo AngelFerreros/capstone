@@ -7,7 +7,7 @@ moment().format();
 class Players extends React.Component {
   render() {
     let playerArr = this.props.players;
-    let userId = this.props.userId;
+    // let userId = this.props.userId;
     console.log('Players data: ',playerArr);
 
 // create cards for individual players
@@ -33,7 +33,7 @@ class Players extends React.Component {
                 <p className="card-text">Location: <span> {address} </span> </p>
                 <p className="card-text">Skill Level: <span> {skillName} </span> </p>
                 <p className="card-text">Court Access: <span> {courtAccess}</span> </p>
-                  <a href={playerProfile} className="btn btn-info">See Profile</a>
+                  <a href="https://api.whatsapp.com/send?phone=+65(SECURE PHONE NUMBER)" className="btn btn-info">Chat</a>
           </div>
         </div>
         );

@@ -14,10 +14,12 @@ class Layout extends React.Component {
           <link rel="stylesheet" href="/styles.css" type = "text/css" />
         </head>
         <body>
+            <div id = "layout-container">
             {this.props.children}
+            </div>
             <footer id="footer">
                 <div className="footer-container text-center">
-                    <small>&copy;2020 Made by Angel Ferreros 🎾 </small>
+                    <small id ="footer-text">&copy;2020 Made with ❤️🎾 by Angel Ferreros  </small>
                 </div>
             </footer>
             <script type= "text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0mU_z1ODp6PjIxdxewMWW9559ZzoerOA&libraries=places&callback=activateAutocomplete"></script>

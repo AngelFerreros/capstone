@@ -2,7 +2,6 @@ const React = require("react");
 const Layout = require("./Layout");
 const Nav = require("./Nav");
 const moment = require("moment");
-moment().format();
 
 class Create extends React.Component {
 
@@ -12,10 +11,10 @@ class Create extends React.Component {
         <Layout>
           <Nav/>
             <div className="container">
-                <div className = "row">
+                <div className = "row main-row">
                   <div className="col form">
                     <h2>Organise an Activity:</h2>
-                        <form method = "POST" action="/organise" className="needs-validation" noValidate>
+                        <form method = "POST" action="/organise" className="needs-validation create-form" noValidate >
                           <div className="form-group">
                             <label for="title">Title:</label>
                             <input type="text" className="form-control" id="title" placeholder="Activity Title" name="title" required/>

@@ -3,8 +3,6 @@ const React = require("react");
 class Nav extends React.Component {
   render() {
     let profilePath =  '/players/'+this.props.userId;
-
-
   return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a id="logo" href= "/dashboard">

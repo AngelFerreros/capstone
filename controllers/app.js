@@ -26,6 +26,14 @@ module.exports = (db) => {
   //       }
   // }
 
+/*
+error codes
+res.sendStatus(200) // equivalent to res.status(200).send('OK')
+res.sendStatus(403) // equivalent to res.status(403).send('Forbidden')
+res.sendStatus(404) // equivalent to res.status(404).send('Not Found')
+res.sendStatus(500) // equivalent to res.status(500).send('Internal Server Error')
+*/
+
 //////////// ADD AUTHENTICATION FOR ALL GET REQUESTS ////////////
   const indexPage = (request, response) => {
     console.log('UserId cookie: ', request.cookies.userId)
@@ -60,15 +68,22 @@ module.exports = (db) => {
 
 // get user data and activities joined/hosted
   const getProfile = (request, response) => {
-    let userId = request.cookies.userId;
-      db.app.getUserRecord(userId, (error, result) => {
-        console.log('user record: ', result);
-        data = {
-          userId: request.cookies.userId,
-          details: result
-        }
+    let userId = request.params.userId;
+    db.app.getUserRecord(userId, (error, result) => {
+      console.log('user record: ', result);
+      if (error || result === null){
+        response.sendStatus(404)
+      }else {
+        db.app.countActivities(userId, (countErr, countResult) =>{
+          console.log('count res: ', countResult)
+          data = {
+            userId: request.cookies.userId,
+            details: result
+          }
         response.render('app/Profile', data);
-      });
+        })
+      }
+    });
   };
 
 
@@ -181,6 +196,7 @@ const loginUser = (request,response) => {
             }
           console.log('user attending?: ', isAttending)
             data = {
+              userId:userId,
               activityDetails: result[0],
               attendeeArr: attendeeRes,
               isAttending:isAttending
@@ -204,6 +220,7 @@ const loginUser = (request,response) => {
         } else {
         db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
             data = {
+              userId:userId,
               activityDetails: result[0],
               attendeeArr: attendeeRes
             }
@@ -235,6 +252,7 @@ const loginUser = (request,response) => {
       })
   }
 
+// only host can delete activity
   const deleteActivity = (request, response) => {
     let activityId = request.params.id;
     db.app.deleteActivity(activityId, (error,result) => {
@@ -294,6 +312,12 @@ const loginUser = (request,response) => {
 
   }
 
+  const sortDate = (request,response) => {
+    let ascending = request.body.userId;
+    db.app.sortDate
+
+  }
+
 
 
   /**
@@ -319,6 +343,7 @@ const loginUser = (request,response) => {
     deleteActivity:deleteActivity,
     join: joinActivity,
     exitActivity: exitActivity,
+    sort: sortDate
 
   };
 

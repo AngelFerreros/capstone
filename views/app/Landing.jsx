@@ -9,7 +9,7 @@ class Landing extends React.Component {
             <div className="container text-center" >
                 <div className="row" style = {{backgroundColor: "#FFFFFF"}}>
                     <div className = "col-8">
-                        <div className= "page-header d-flex">
+                        <div className= "page-header d-flex align-self-center">
                             <h3>Game,Set,Match!</h3>
                             <div className= "tagline"><p>The Community for Tennis Players </p>
                             </div>

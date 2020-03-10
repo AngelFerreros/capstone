@@ -36,9 +36,9 @@ class Edit extends React.Component {
 
     return (
         <Layout>
-          <Nav/>
+          <Nav userId = {this.props.userId}/>
             <div className="container">
-                <div className = "row">
+                <div className = "row main-row">
                   <div className="col form">
                     <h2>Activity Details:</h2>
                     <form method = "POST" action={postEdit} className="needs-validation" noValidate>

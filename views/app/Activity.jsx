@@ -42,9 +42,9 @@ class Activity extends React.Component {
 
     return (
         <Layout>
-          <Nav/>
+          <Nav userId = {this.props.userId}/>
             <div className="container">
-                <div className = "row">
+                <div className = "row main-row">
                   <div className="col">
                     <h2>Activity Details:</h2>
                       <p>Title: {title} </p>

@@ -174,7 +174,7 @@ module.exports = (dbPoolInstance) => {
 
 // query for owner to delete activity
   const deleteActivity = (activityId, callback) => {
-    let query = 'DELETE FROM activities WHERE activity_id ='+activityId;
+    let query = 'DELETE FROM activities WHERE id ='+activityId;
     dbPoolInstance.query(query, (error,result) => {
       if(error){
         callback(error,null)
@@ -200,6 +200,34 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
+  const sortDate = ( callback) => {
+    let query;
+    if (asc) {
+      query = "SELECT * FROM activities ORDER BY activity_date asc";
+    } else {
+      query = "SELECT * FROM activities ORDER BY activity_date desc";
+    }
+    dbPoolInstance.query(query, (error, result) => {
+      if (error) console.log(error);
+      else callback(error, result.rows);
+    });
+  };
+
+
+// query to count activities hosted and joined
+  const countActivities = (userId,callback)=>{
+    let query = 'SELECT COUNT( * ) as "Activity Count" FROM activities_users WHERE user_id='+userId;
+    dbPoolInstance.query(query, (error, result) => {
+      if(error || result.rows.length < 0){
+        callback(error, null);
+      }else if (result.rows.length > 0){
+        callback(null, result.rows);
+      }else{
+        callback(null, null);
+      }
+    });
+  }
+
 
 
   return {
@@ -215,6 +243,7 @@ module.exports = (dbPoolInstance) => {
     updateActivity: updateActivity,
     deleteActivity:deleteActivity,
     exitActivity:exitActivity,
-    getPlayers: getPlayers
+    getPlayers: getPlayers,
+    countActivities:countActivities
   };
 }
