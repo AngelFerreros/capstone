@@ -161,7 +161,7 @@ const loginUser = (request,response) => {
 
 // query to get specific activity
   const activityPage = (request, response) => {
-    let userId = request.cookies.userId;
+    let userId = parseInt(request.cookies.userId);
     let activityId = request.params.id;
     console.log('activity id chosen: ', activityId)
       db.app.getActivityDetails(activityId, (error, result) => {
@@ -169,9 +169,20 @@ const loginUser = (request,response) => {
           console.log(error)
         } else {
           db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
+            let isAttending = false;
+            for (let i = 0;  i < attendeeRes.length;i++) {
+              let attendeeId = attendeeRes[i].user_id;
+                  console.log('user iddd:',userId)
+                if (attendeeId === userId){
+                  isAttending = true;
+                  break;
+                }
+            }
+          console.log('user attending?: ', isAttending)
             data = {
               activityDetails: result[0],
-              attendeeArr: attendeeRes
+              attendeeArr: attendeeRes,
+              isAttending:isAttending
             }
           response.render('app/Activity', data);
           });
@@ -244,8 +255,23 @@ const loginUser = (request,response) => {
         response.redirect('/activity/'+activityId);
       }
     });
-
   }
+
+  const exitActivity = (request, response) => {
+    let userId = request.cookies.userId;
+    let activityId = request.params.id;
+    db.app.exitActivity(userId, activityId, (error,result) => {
+      if (error){
+        console.log('error: ', error)
+        response.sendStatus(500)
+        // response.render('app/Activity')
+      } else {
+        response.redirect('/activity/'+activityId);
+      }
+    });
+  }
+
+
 
 
   const playersIndex = () => {}
@@ -273,7 +299,8 @@ const loginUser = (request,response) => {
     edit:editForm,
     updateActivity: updateActivity,
     deleteActivity:deleteActivity,
-    join: joinActivity
+    join: joinActivity,
+    exitActivity: exitActivity
   };
 
 }

@@ -114,6 +114,7 @@ module.exports = (dbPoolInstance) => {
     });
  }
 
+
 // query to insert activities into table
   const insertActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
     let values = [userId, category, title, description, date, start_at, end_at, address, slots];
@@ -140,6 +141,19 @@ module.exports = (dbPoolInstance) => {
       }
     })
  }
+
+  const exitActivity = (userId,activityId,callback)=> {
+    let query = `DELETE FROM activities_users WHERE user_id =`+userId+`AND activity_id =`+activityId;
+    dbPoolInstance.query(query, (error,result) => {
+       if (error){
+        callback(error, null);
+      } else {
+        callback(null, result.rows[0]);
+      }
+    });
+  }
+
+
 
 // query to update activity
   const updateActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
@@ -182,5 +196,6 @@ module.exports = (dbPoolInstance) => {
     getAttendees: getAttendees,
     updateActivity: updateActivity,
     deleteActivity:deleteActivity,
+    exitActivity:exitActivity
   };
 }

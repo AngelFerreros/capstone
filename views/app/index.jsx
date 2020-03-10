@@ -18,13 +18,12 @@ class Index extends React.Component {
         const title = activity.title;
         const venue = activity.address;
         const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
-        const start = activity.start_at.replace('+08', '');
 
-          const formattedStart = moment(activity.start_at).format('LT');
-        console.log('dfghdgrd', formattedStart)
-
-        const end = activity.end_at.replace('+08', '');
-          const formattedEnd = moment(end).format('LT');
+        const start = activity.start_at;
+        const end = activity.end_at;
+        const parseString = "HH:mm:ss ZZ";
+          const formattedStart = moment.parseZone(start,parseString).format('h:mm a');
+          const formattedEnd = moment.parseZone(end,parseString).format('h:mm a');
 
         console.log('activity details: ',activityId, title, venue, date, formattedStart, formattedEnd);
         return (
@@ -34,7 +33,7 @@ class Index extends React.Component {
               <h5 className="card-title">{title}</h5>
                 <p className="card-text">Venue: <span> {venue} </span> </p>
                 <p className="card-text">Date: <span> {date} </span> </p>
-                <p className="card-text">Time: <span> {start} - {end}</span> </p>
+                <p className="card-text">Time: <span> {formattedStart} - {formattedEnd}</span> </p>
                   <a href={url} className="btn btn-info">View More</a>
           </div>
         </div>

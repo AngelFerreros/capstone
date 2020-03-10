@@ -69,12 +69,13 @@ document.getElementById('beginner').addEventListener('click', addDisable);
 document.getElementById('intermediate').addEventListener('click', removeDisable);
 document.getElementById('competitive').addEventListener('click', removeDisable);
 
-function hideJoinBtn(){
-  document.getElementById('join-btn').setAttribute('display','none');
-}
 
-function hideHostBtns(){
-  document.getElementById('edit-btn').setAttribute('display','none');
-  document.getElementById('delete-btn').setAttribute('display','none');
+// function hideJoinBtn(){
+//   document.getElementById('join-btn').setAttribute('display','none');
+// }
 
-}
+// function hideHostBtns(){
+//   document.getElementById('edit-btn').setAttribute('display','none');
+//   document.getElementById('delete-btn').setAttribute('display','none');
+
+// }
