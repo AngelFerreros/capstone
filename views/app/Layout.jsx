@@ -3,7 +3,8 @@ const React = require("react");
 class Layout extends React.Component {
 
   render() {
-    let apiScript = "https://maps.googleapis.com/maps/api/js?key="+process.env.REACT_APP_GOOGLE_API_KEY+"&libraries=places&callback=activateAutocomplete";
+    let API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+    let apiScript = "https://maps.googleapis.com/maps/api/js?key="+API_KEY+"&libraries=places&callback=activateAutocomplete";
     return (
       <html>
         <head>

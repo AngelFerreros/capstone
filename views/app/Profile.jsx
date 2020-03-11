@@ -6,6 +6,7 @@ const moment = require("moment");
 class Profile extends React.Component {
 
   render() {
+    let PHONE = process.env.PHONE;
     const name = this.props.details.username;
     const address = this.props.details.address;
     const skillLevel = this.props.details.level_id;
@@ -21,7 +22,7 @@ class Profile extends React.Component {
       if(playerId === loggedinUser){
         chat = " ";
       }else {
-        let whatsappLink = "https://api.whatsapp.com/send?phone=+65"+process.env.PHONE;
+        let whatsappLink = "https://api.whatsapp.com/send?phone=+65"+PHONE;
         chat = <a href = {whatsappLink}> Chat </a>
       };
 
