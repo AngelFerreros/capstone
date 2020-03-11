@@ -215,8 +215,8 @@ module.exports = (dbPoolInstance) => {
 
 
 // query to count activities hosted and joined
-  const countActivities = (userId,callback)=>{
-    let query = 'SELECT COUNT( * ) as "Activity Count" FROM activities_users WHERE user_id='+userId;
+  const userActivities = (userId,callback)=>{
+    let query = 'SELECT activities.title, activities_users.isHost FROM activities INNER JOIN activities_users ON (activities.id = activities_users.activity_id)WHERE activities_users.user_id='+userId;
     dbPoolInstance.query(query, (error, result) => {
       if(error || result.rows.length < 0){
         callback(error, null);
@@ -244,6 +244,6 @@ module.exports = (dbPoolInstance) => {
     deleteActivity:deleteActivity,
     exitActivity:exitActivity,
     getPlayers: getPlayers,
-    countActivities:countActivities
+    userActivities:userActivities
   };
 }

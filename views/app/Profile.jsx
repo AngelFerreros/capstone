@@ -7,14 +7,33 @@ moment().format();
 class Profile extends React.Component {
 
   render() {
-    let name = this.props.details.username;
-    let address = this.props.details.address;
-    let skillLevel = this.props.level_id;
-      let skillName = skillLevel === 1 ? "Beginner" : (skillLevel === 2 ? "Intermediate" : "Competitive");
-    let canTeach = this.props.can_coach;
-      let canTeachValue = (canTeach === 'f' || canTeach === null) ? "No" : "Yes";
+    const name = this.props.details.username;
+    const address = this.props.details.address;
+    const skillLevel = this.props.details.level_id;
+      const skillName = skillLevel === 1 ? "Beginner" : (skillLevel === 2 ? "Intermediate" : "Competitive");
+    const canTeach = this.props.details.can_coach;
+      const canTeachValue = (canTeach === 'f' || canTeach === null) ? "No" : "Yes";
 
-    let courtAccess = this.props.court_access === true ? "Yes" : "No";
+    const courtAccess = this.props.details.court_access === true ? "Yes" : "No";
+
+    const userActivities = this.props.activities;
+  console.log('activities by user:' , userActivities)
+    //   let activityCount = userActivities.length
+    //   var hostCount = 0;
+    //   for (let i = 0; i < activityCount; i++) {
+    //     let checkIfHost = userActivities[i].ishost;
+    //       if(checkIfHost === true){
+    //         hostCount += 1;
+    //         i++
+    //       }
+    //   }
+    //   let attendeeCount = activityCount - hostCount;
+
+    //   console.log('count of hosted events:' , hostCount)
+    //   console.log('count of attended events:' , attendeeCount)
+
+
+
 
     return (
         <Layout>

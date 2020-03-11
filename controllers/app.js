@@ -74,11 +74,12 @@ res.sendStatus(500) // equivalent to res.status(500).send('Internal Server Error
       if (error || result === null){
         response.sendStatus(404)
       }else {
-        db.app.countActivities(userId, (countErr, countResult) =>{
-          console.log('count res: ', countResult)
+        db.app.userActivities(userId, (actErr, actResult) =>{
+          console.log('results: ', actResult)
           data = {
             userId: request.cookies.userId,
-            details: result
+            details: result,
+            activities: actResult
           }
         response.render('app/Profile', data);
         })
