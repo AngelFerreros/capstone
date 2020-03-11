@@ -1,4 +1,6 @@
 const sha256 = require("js-sha256");
+require('dotenv').config()
+console.log('api key in controllers:', process.env.REACT_APP_GOOGLE_API_KEY)
 module.exports = (db) => {
 
   /**
@@ -7,7 +9,7 @@ module.exports = (db) => {
    * ===========================================
    */
 
-// checkSession :: request.cookies -> boolean
+// checkSession :: if(request.cookies.user) -> returns true, then can access page requested
 
 // verify if user is alr loggedIn in all GET requests
   // const checkSession = (request, response )=> {
