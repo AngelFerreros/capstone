@@ -15,9 +15,39 @@ class Profile extends React.Component {
 
     const courtAccess = this.props.details.court_access === true ? "Yes" : "No";
 
+    const playerId = this.props.details.id;
+    const loggedinUser = parseInt(this.props.userId);
+    let chat;
+      if(playerId === loggedinUser){
+        chat = " ";
+      }else {
+        let whatsappLink = "https://api.whatsapp.com/send?phone=+65"+process.env.PHONE;
+        chat = <a href = {whatsappLink}> Chat </a>
+      };
+
     const userActivities = this.props.activities;
     console.log('activities by user:' , userActivities)
-    //condition to display chat button  <a href = "https://api.whatsapp.com/send?phone=+65()"> Chat </a>
+    let hostedActivities;
+    if (userActivities){
+      hostedActivities = userActivities.map( (activity)=>{
+        if (activity.ishost){
+        return  <li>{activity.title}</li>
+        }
+      });
+    }else {
+      hostedActivities = <li>None hosted yet 😞</li>
+      }
+
+    let joinedActivities;
+    if (userActivities){
+      joinedActivities = userActivities.map( (activity)=>{
+        if (activity.ishost === false){
+        return  <li>{activity.title}</li>
+        }
+      });
+    }else {
+      joinedActivities = <li>None joined yet 😞</li>
+      }
 
     return (
         <Layout>
@@ -31,8 +61,9 @@ class Profile extends React.Component {
                         <p>Skill: {skillName} </p>
                         <p>Willing To Teach: {canTeachValue} </p>
                         <p>Court Access: {courtAccess} </p>
-                        <p>Activities Hosted: {} </p>
-                        <p>Activities Joined: {} </p>
+                        <p>Activities Hosted:</p> <ul> {hostedActivities} </ul>
+                        <p>Activities Joined: {joinedActivities} </p>
+                        <button className = "btn btn-light"> {chat}</button>
                   </div>
                   <div className="col-8"> <img className ="img-fluid" id = "player-practice" src = "/images/player_prep.jpg" alt="player-practice"/></div>
                 </div>

@@ -6,7 +6,7 @@ class Nav extends React.Component {
   return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a id="logo" href= "/dashboard">
-              <div className="navbar-brand"><img src="#"/></div>
+              <div className="navbar-brand"><img id = "logo" src="/images/flame-ball.png"/></div>
             </a>
 
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

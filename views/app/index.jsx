@@ -4,6 +4,7 @@ const Nav = require("./Nav")
 const moment = require('moment')
 
 
+
 class Index extends React.Component {
 
   render() {
@@ -64,6 +65,7 @@ class Index extends React.Component {
         <Layout>
           <Nav userId = {this.props.userId}/>
               <div className = "container">
+              <h2>Activities:</h2>
                 <p> Sort Date:</p>
                 <div className = "col-auto">
                   <form method = "GET" action = "/dashboard" >

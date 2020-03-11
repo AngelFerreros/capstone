@@ -44,6 +44,7 @@ class Players extends React.Component {
         <Layout>
           <Nav userId = {this.props.userId}/>
             <div className = "container">
+            <h2>Players:</h2>
                 <div className = "d-flex row card-row justify-content-around p-4 text-center">
                   <div className="card-columns">
                   {playersCard}

@@ -216,6 +216,10 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
+
+
+
+
   const getPlayers = (userId, callback) => {
     let query = `SELECT * FROM users WHERE NOT id =`+userId;
     dbPoolInstance.query(query, (error, result) => {

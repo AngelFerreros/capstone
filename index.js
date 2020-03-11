@@ -2,6 +2,7 @@ const express = require('express');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+require('dotenv').config()
 
 /**
  * ===================================

@@ -3,7 +3,7 @@ const React = require("react");
 class Layout extends React.Component {
 
   render() {
-
+    let apiScript = "https://maps.googleapis.com/maps/api/js?key="+process.env.REACT_APP_GOOGLE_API_KEY+"&libraries=places&callback=activateAutocomplete";
     return (
       <html>
         <head>
@@ -22,8 +22,7 @@ class Layout extends React.Component {
                     <small id ="footer-text">&copy;2020 Made with ❤️🎾 by Angel Ferreros </small>
                 </div>
             </footer>
-            <script type= "text/javascript" src="https://maps.googleapis.com/maps/api/js?key={API_KEY}&libraries=places&callback=activateAutocomplete"></script>
-
+            <script type= "text/javascript" src= {apiScript}></script>
             <script src = '/script.js'> </script>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossOrigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossOrigin="anonymous"></script>

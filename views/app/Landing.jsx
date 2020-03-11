@@ -7,15 +7,15 @@ class Landing extends React.Component {
     return (
       <Layout>
             <div className="container text-center" >
-                <div className="row" style = {{backgroundColor: "#FFFFFF"}}>
-                    <div className = "col-8">
-                        <div className= "page-header d-flex align-self-center">
+                <div className="row align-items-center" style = {{backgroundColor: "#FFFFFF"}}>
+                    <div className = "col-8 ">
+                        <div className= "page-header">
                             <h3>Game,Set,Match!</h3>
                             <div className= "tagline"><p>The Community for Tennis Players </p>
                             </div>
                         </div>
                     </div>
-                    <div className = "col-4">
+                    <div className = "col-4 ">
                        <p> <a className = "btn btn-warning" href = "/register">Join Our Community</a></p>
                        <p> <a className = "btn btn-warning" href = "/login">Log In</a></p>
                     </div>
