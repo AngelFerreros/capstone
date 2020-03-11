@@ -5,6 +5,7 @@ const moment = require('moment')
 
 
 class Index extends React.Component {
+
   render() {
     console.log('Index data: ', this.props.activities);
     let activityArr = this.props.activities;
@@ -59,24 +60,28 @@ class Index extends React.Component {
       });
     }
 
+
     return (
         <Layout>
           <Nav userId = {this.props.userId}/>
               <div className = "container">
                 <p> Sort Date:</p>
-                <form method = "GET" action = "/dashboard?sortby=" >
-                  <select name = "sortby" class="custom-select mr-sm-2" id="sortby" >
-                      <option selected>Choose...</option>
-                        <option value ="asc">Ascending</option>
-                        <option value = "desc">Descending</option>
-                  </select>
-                </form>
+                <div className = "col-auto">
+                  <form method = "GET" action = "/dashboard" >
+                    <select name = "sortby" class="custom-select mr-sm-2" >
+                      <option value ="ASC">Ascending</option>
+                      <option value = "DESC">Descending</option>
+                    </select>
+                    <input type="submit" className = "btn btn-info" value = "Submit"/>
+                  </form>
+                </div>
                   <div className = "row card-row justify-content-around p-4 text-center">
                     <div className="card-columns">
                     {card}
                     </div>
                   </div>
               </div>
+        }
         </Layout>
     );
   }

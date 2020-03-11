@@ -16,7 +16,6 @@ module.exports = (app, allModels) => {
   app.get('/activity/:id', controllerCallbacks.activity)
   app.get('/activity/:id/edit', controllerCallbacks.editActivity)
   app.get('/players', controllerCallbacks.players)
-  app.get('/dashboard?sortby=:date',controllerCallbacks.sort)
 
   app.post('/logout', controllerCallbacks.logout)
   app.post('/register', controllerCallbacks.registerUser)

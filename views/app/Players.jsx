@@ -33,7 +33,7 @@ class Players extends React.Component {
                 <p className="card-text">Location: <span> {address} </span> </p>
                 <p className="card-text">Skill Level: <span> {skillName} </span> </p>
                 <p className="card-text">Court Access: <span> {courtAccess}</span> </p>
-                  <a href="https://api.whatsapp.com/send?phone=+65(SECURE PHONE NUMBER)" className="btn btn-info">Chat</a>
+                  <a href={playerProfile} className="btn btn-info">View More</a>
           </div>
         </div>
         );

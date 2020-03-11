@@ -27,6 +27,11 @@ class Activity extends React.Component {
     const parseString = "HH:mm:ss ZZ";
         const formattedStart = moment.parseZone(start,parseString).format('h:mm a');
         const formattedEnd = moment.parseZone(end,parseString).format('h:mm a');
+    const slots = activity.slots;
+      console.log("slots:", slots);
+    const playersAttending = attendeeArr.length
+    const playersNeeded =  slots - playersAttending + 1//exclude host
+    console.log('players needed = ', playersNeeded)
 
     var host;
     const attendees = attendeeArr.map( (attendee , index) => {
@@ -56,7 +61,7 @@ class Activity extends React.Component {
                         <div id = "map"> </div>
                         <p>Attendees:</p>
                         <a href ="#"> <ul>{attendees} </ul> </a>
-                        <p>Slots:</p>
+                        <p>Slots Left: {playersNeeded}</p>
 
                         <form method = "POST" action = {joinUrl}>
                           <input type = "submit" id = "join-btn" value = "Join" />

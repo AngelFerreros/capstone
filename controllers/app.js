@@ -38,15 +38,34 @@ res.sendStatus(500) // equivalent to res.status(500).send('Internal Server Error
   const indexPage = (request, response) => {
     console.log('UserId cookie: ', request.cookies.userId)
     let userId = request.cookies.userId;
+    let queryString = request.query.sortby;
+    console.log('sort date: ', queryString)
 
-          db.app.getAll((error, allActivities) => {
-            data = {
-              userId:request.cookies.userId,
-              activities: allActivities
+    if (queryString === null || queryString === "") {
+    db.app.getAll(null, (error, allActivities) => {
+      data = {
+        userId:request.cookies.userId,
+        activities: allActivities
+      }
+    });
+    response.render('app/index', data);
+    } else{
+      db.app.getAll(queryString, (sortErr, sortRes) => {
+        if(sortErr){
+          response.sendStatus(404)
+        } else {
+          data = {
+            userId:request.cookies.userId,
+            activities: sortRes
             }
-            response.render('app/index', data);
+        response.render('app/index', data);
 
+        }
       })
+
+    }
+
+
   };
 
   const landing = (request, response) => {
@@ -314,7 +333,7 @@ const loginUser = (request,response) => {
   }
 
   const sortDate = (request,response) => {
-    let ascending = request.body.userId;
+    let ascending = request.body;
     db.app.sortDate
 
   }

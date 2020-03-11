@@ -9,22 +9,53 @@ const SALT = 'Wow, last project!';
  */
 module.exports = (dbPoolInstance) => {
   // `dbPoolInstance` is accessible within this function scope
-  const getAll = (callback) => {
-    let query = 'SELECT * FROM activities';
-    dbPoolInstance.query(query, (error, queryResult) => {
-      if( error ){
-        // invoke callback function with results after query has executed
-        callback(error, null);
-      }else{
-        // invoke callback function with results after query has executed
-        if( queryResult.rows.length > 0 ){
-          callback(null, queryResult.rows);
-        }else{
-          callback(null, null);
+  const getAll = (queryString, callback) => {
+    let query;
+    if(queryString === null){
+      query = 'SELECT * FROM activities';
+      dbPoolInstance.query(query, (error, queryResult) => {
+        if( error ){
+          callback(error, null);
         }
-      }
-    });
+        else{
+          if( queryResult.rows.length > 0 ){
+            callback(null, queryResult.rows);
+          }else{
+            callback(null, null);
+          }
+        }
+      });
+    } else if (queryString === "ASC") {
+      query = 'SELECT * FROM activities ORDER BY activity_date ASC';
+      dbPoolInstance.query(query, (ascError, ascResult) => {
+        if( ascError ){
+          callback(ascError, null);
+        }
+        else{
+          if( ascResult.rows.length > 0 ){
+            callback(null, ascResult.rows);
+          }else{
+            callback(null, null);
+          }
+        }
+      });
+    } else{
+      query = 'SELECT * FROM activities ORDER BY activity_date DESC';
+      dbPoolInstance.query(query, (descError, descResult) => {
+        if( descError ){
+          callback(descError, null);
+        }
+        else{
+          if( descResult.rows.length > 0 ){
+            callback(null, descResult.rows);
+          }else{
+            callback(null, null);
+          }
+        }
+      });
+    }
   };
+
 
   const recordUser = (skillLevel, email, pswd, uname, address, coach, courtAccess, callback) => {
     let hashedPw = sha256(SALT + pswd);
@@ -172,7 +203,7 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-// query for owner to delete activity
+// query for owner to delete activity - need to remove at activities_users
   const deleteActivity = (activityId, callback) => {
     let query = 'DELETE FROM activities WHERE id ='+activityId;
     dbPoolInstance.query(query, (error,result) => {

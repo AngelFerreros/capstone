@@ -11,7 +11,7 @@ class Register extends React.Component {
         <Layout>
             <div className="container text-center" id="register" >
                 <div className="row main-row">
-                  <div className="col form">
+                  <div className="col-auto form">
                     <h2>Join our Community</h2>
                     <p>{errorMsg}</p>
                         <form method = "POST" action="/register" className="needs-validation form" noValidate>

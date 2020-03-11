@@ -2,7 +2,6 @@ const React = require("react");
 const Layout = require("./Layout");
 const Nav = require("./Nav");
 const moment = require("moment");
-moment().format();
 
 class Profile extends React.Component {
 
@@ -17,23 +16,8 @@ class Profile extends React.Component {
     const courtAccess = this.props.details.court_access === true ? "Yes" : "No";
 
     const userActivities = this.props.activities;
-  console.log('activities by user:' , userActivities)
-    //   let activityCount = userActivities.length
-    //   var hostCount = 0;
-    //   for (let i = 0; i < activityCount; i++) {
-    //     let checkIfHost = userActivities[i].ishost;
-    //       if(checkIfHost === true){
-    //         hostCount += 1;
-    //         i++
-    //       }
-    //   }
-    //   let attendeeCount = activityCount - hostCount;
-
-    //   console.log('count of hosted events:' , hostCount)
-    //   console.log('count of attended events:' , attendeeCount)
-
-
-
+    console.log('activities by user:' , userActivities)
+    //condition to display chat button  <a href = "https://api.whatsapp.com/send?phone=+65()"> Chat </a>
 
     return (
         <Layout>
