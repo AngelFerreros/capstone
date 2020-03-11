@@ -9,6 +9,7 @@ class Activity extends React.Component {
   render() {
     const activity = this.props.activityDetails;
     const attending = this.props.isAttending;
+    const loggedInUser = parseInt(this.props.userId);
 
     let joinUrl = '/activity/'+activity.id;
     let exitUrl = '/activity/'+activity.id+'/exit?_method=delete';
@@ -40,16 +41,43 @@ class Activity extends React.Component {
     console.log('players needed = ', playersNeeded)
 
       var host;
+      var hostId;
       attendees = attendeeArr.map( (attendee , index) => {
         host = attendee.ishost;
         let hostDisplay;
           if(host){
-             hostDisplay = "(Host)";
+            hostId = attendee.user_id;
+            hostDisplay = "(Host)";
            return <li key = {index} value = {attendee.user_id}><a href = {attendee.user_id}>{attendee.username} {hostDisplay}</a> </li>
           } else {
            return <li key = {index} value = {attendee.user_id}><a href = {attendee.user_id}>{attendee.username}</a></li>
           }
       });
+    }
+    // conditional rendering of buttons
+    console.log('host in btn rendering:', hostId)
+    console.log('loggedInUser:', loggedInUser)
+    let btn;
+    if (hostId === loggedInUser){
+    btn =
+        <div>
+         <form method = "GET" action ={editUrl}>
+            <input type = "submit" className = "btn btn-info" id = "edit-btn" value = "Edit" />
+          </form>
+         <form method = "POST" action = {deleteUrl}>
+            <input type = "submit" className = "btn btn-info" id = "delete-btn" value = "Delete" />
+         </form>
+        </div>
+    }else{
+      btn =
+        <div>
+          <form method = "POST" action = {joinUrl}>
+            <input type = "submit" id = "btn btn-info" value = "Join" />
+          </form>
+          <form method = "POST" action = {exitUrl}>
+            <input type = "submit" id = "btn btn-info" value = "Exit" />
+          </form>
+        </div>
     }
 
     return (
@@ -69,21 +97,7 @@ class Activity extends React.Component {
                         <p>Attendees:</p>
                          <ul>{attendees} </ul>
                         <p>Slots Left: {playersNeeded}</p>
-
-                        <form method = "POST" action = {joinUrl}>
-                          <input type = "submit" id = "join-btn" value = "Join" />
-                        </form>
-
-                        <form method = "POST" action = {exitUrl}>
-                          <input type = "submit" id = "exit-btn" value = "Exit" />
-                        </form>
-
-                        <form method = "GET" action ={editUrl}>
-                           <input type = "submit" id = "edit-btn" value = "Edit" />
-                        </form>
-                        <form method = "POST" action = {deleteUrl}>
-                          <input type = "submit" id = "delete-btn" value = "Delete" />
-                        </form>
+                  <div className = "btn-wrapper"> {btn}</div>
                   </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 Project #4:
 
 An embedded screenshot of the app:
-
+<img src = "Game-Set-Match.png"> </img>
 
 
 General approach:
@@ -12,18 +12,22 @@ User Stories:
 - More advanced Tennis players who are willing to teach others in an informal setting do not have the platform or network to do so.
 -Tennis players can search for events to join around their area.
 
+ERD:
+https://github.com/AngelFerreros/capstone/blob/master/Capstone%20Project_%20ERD.pdf
+
 Wireframes:
 https://github.com/AngelFerreros/capstone/blob/master/gsm_wireframe.pdf
 
 Technologies used:
 - Express (MVC)
 - React.js
+- PostgresSQL
 - Javascript
 - Bootstrap
+- Heroku
 
 Installation instructions (for any dependencies):
-
-
-
+- Install express, react, react dom and express-react-views
+- Install moment.js for date formatting
 
 Descriptions of any unsolved problems or major hurdles:

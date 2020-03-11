@@ -23,9 +23,9 @@ module.exports = (app, allModels) => {
   app.post('/organise' , controllerCallbacks.organiseActivity)
   app.post('/activity/:id', controllerCallbacks.join)
 
+  app.put('/activity/:id',controllerCallbacks.updateActivity)
   app.delete('/activity/:id', controllerCallbacks.deleteActivity)
   app.delete('/activity/:id/exit', controllerCallbacks.exitActivity)
-  app.put('/activity/:id',controllerCallbacks.updateActivity)
 
 
 };

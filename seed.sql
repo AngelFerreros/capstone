@@ -35,7 +35,6 @@ VALUES
 (10, 1, 'serve and rally', 'I want to practice my consistency. Please join if you want a casual rally session. Any skill level welcome.', '2020-03-15', '17:00:00', '18:00:00', '21 Evans Rd, Singapore 259366', 3),
 (8, 2, 'practice game', 'Need to practice playing a game. Anyone willing to play with a beginner?', '2020-03-28', '18:15:00', '19:15:00', '3 Bedok North Street 2, 469643', 1);
 
-
 INSERT INTO activities_users
 (user_id, isHost, activity_id)
 VALUES

@@ -137,7 +137,7 @@ module.exports = (dbPoolInstance) => {
         callback(error, null);
       }else{
         if( result.rows.length > 0 ){
-          console.log('result in models: ', result)
+          console.log('attendee result in models: ', result)
           callback(null, result.rows);
         }else{
           callback(null, null);
@@ -163,6 +163,7 @@ module.exports = (dbPoolInstance) => {
 
 // query to insert user into join table (user joins/hosts activity)
   const joinActivity = (userId, isHost, activityId, callback) => {
+
     let values = [userId, isHost, activityId];
     let insertQuery = 'INSERT INTO activities_users (user_id, isHost,activity_id) VALUES ($1,$2,$3) RETURNING *';
     dbPoolInstance.query(insertQuery, values, (error, result) => {
@@ -185,8 +186,6 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-
-
 // query to update activity
   const updateActivity = (userId, category, title, description, date, start_at, end_at, address, slots, callback) => {
     let values = [category, title, description, date, start_at, end_at, address, slots];
@@ -203,7 +202,7 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-// query for owner to delete activity - need to remove at activities_users
+// query for owner to delete activity
   const deleteActivity = (activityId, callback) => {
     let query = 'DELETE FROM activities WHERE id ='+activityId;
     dbPoolInstance.query(query, (error,result) => {
@@ -215,10 +214,6 @@ module.exports = (dbPoolInstance) => {
       }
     });
   }
-
-
-
-
 
   const getPlayers = (userId, callback) => {
     let query = `SELECT * FROM users WHERE NOT id =`+userId;
@@ -234,20 +229,6 @@ module.exports = (dbPoolInstance) => {
       }
     });
   }
-
-  const sortDate = ( callback) => {
-    let query;
-    if (asc) {
-      query = "SELECT * FROM activities ORDER BY activity_date asc";
-    } else {
-      query = "SELECT * FROM activities ORDER BY activity_date desc";
-    }
-    dbPoolInstance.query(query, (error, result) => {
-      if (error) console.log(error);
-      else callback(error, result.rows);
-    });
-  };
-
 
 // query to count activities hosted and joined
   const userActivities = (userId,callback)=>{

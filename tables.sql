@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS activities_users (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
     isHost BOOLEAN,
-    activity_id INTEGER
+    activity_id INTEGER REFERENCES activities ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS categories (

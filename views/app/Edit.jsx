@@ -113,11 +113,11 @@ class Edit extends React.Component {
                             <div className="invalid-feedback">Please fill out this field.</div>
                         </div>
 
-                        <input type = "submit" value = "Confirm"/>
+                        <input type = "submit" value = "Confirm" className="btn btn-info"/>
                     </form>
 
                     <form method = "GET" action = {activityUrl}>
-                      <input type = "submit" value = "Cancel"/>
+                      <input type = "submit" value = "Cancel" className="btn btn-info"/>
                     </form>
 
                     </div>

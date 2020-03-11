@@ -207,7 +207,7 @@ const loginUser = (request,response) => {
               let isAttending = false;
               for (let i = 0;  i < attendeeRes.length; i++) {
                 let attendeeId = attendeeRes[i].user_id;
-                    console.log('user iddd:',userId)
+                    console.log('user id:',userId)
                   if (attendeeId === userId){
                     isAttending = true;
                     break;
@@ -221,7 +221,7 @@ const loginUser = (request,response) => {
                 isAttending:isAttending
               }
             response.render('app/Activity', data);
-          }else {
+          } else {
             let isAttending = false;
             data = {
                 userId:userId,
@@ -289,28 +289,44 @@ const loginUser = (request,response) => {
       if (error){
         console.log('error: ', error)
         response.sendStatus(500)
-        // response.render('app/Activity')
       } else {
-        response.redirect('app/index');
+        response.redirect('/dashboard');
       }
     });
-
   }
-
 
   const joinActivity = (request, response) => {
-    let userId = request.cookies.userId;
+    let userId = parseInt(request.cookies.userId);
     let activityId = request.params.id;
     let isHost = false;
-    db.app.joinActivity(userId, isHost, activityId, (error,result) => {
-      if (error){
+    // let isAttending = false;
+    // db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
+    //   if (attendeeRes){
+    //     // let isAttending = false;
+    //     for (let i = 0;  i < attendeeRes.length; i++) {
+    //       let attendeeId = attendeeRes[i].user_id;
+    //           console.log('user id:',userId)
+    //         if (attendeeId === userId){
+    //           isAttending = true;
+    //           break;
+    //         }
+    //     }
+    //     response.redirect('/activity/'+activityId);
+    //   }else {
+    //   console.log('ohfaohfdaecmn', isAttending)
+      db.app.joinActivity(userId, isHost, activityId, (error,result) => {
+        if (error){
         console.log('error: ', error)
-        response.redirect('/activity/'+activityId)
-      } else {
+        response.sendStatus(500);
+        }else {
         response.redirect('/activity/'+activityId);
-      }
-    });
-  }
+        }
+      });
+    }
+  //   });
+  // }
+
+
 
   const exitActivity = (request, response) => {
     let userId = request.cookies.userId;
@@ -342,11 +358,6 @@ const loginUser = (request,response) => {
 
   }
 
-  const sortDate = (request,response) => {
-    let ascending = request.body;
-    db.app.sortDate
-
-  }
 
 
 
@@ -372,9 +383,7 @@ const loginUser = (request,response) => {
     updateActivity: updateActivity,
     deleteActivity:deleteActivity,
     join: joinActivity,
-    exitActivity: exitActivity,
-    sort: sortDate
-
+    exitActivity: exitActivity
   };
 
 }
