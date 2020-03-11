@@ -1,8 +1,5 @@
 const React = require("react");
 
-
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
-
 class Layout extends React.Component {
 
   render() {

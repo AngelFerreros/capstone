@@ -1,5 +1,7 @@
 const sha256 = require("js-sha256");
 require('dotenv').config()
+
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY
 module.exports = (db) => {
 
   /**
@@ -71,11 +73,17 @@ res.sendStatus(500) // equivalent to res.status(500).send('Internal Server Error
 
   const createForm = (request, response) => {
     // if logged in, get user id
-      response.render('app/Create');
+    const data = {
+      API_KEY: API_KEY
+    }
+    response.render('app/Create',data);
     };
 
   const registerForm = (request, response) => {
-      response.render('app/Register');
+    const data = {
+      API_KEY: API_KEY
+    }
+      response.render('app/Register',data);
     };
 
   const loginForm = (request, response) => {
@@ -118,7 +126,8 @@ res.sendStatus(500) // equivalent to res.status(500).send('Internal Server Error
           if(error){
             data = {
               error: error,
-              errorMsg: "Something went wrong. Please try again."
+              errorMsg: "Something went wrong. Please try again.",
+              API_KEY: API_KEY
             };
             response.render('app/Register', data);
           } else {
@@ -216,7 +225,8 @@ const loginUser = (request,response) => {
               userId:userId,
               activityDetails: result[0],
               attendeeArr: attendeeRes,
-              isAttending:isAttending
+              isAttending:isAttending,
+              API_KEY:API_KEY
             }
           response.render('app/Activity', data);
           });
@@ -239,7 +249,8 @@ const loginUser = (request,response) => {
             data = {
               userId:userId,
               activityDetails: result[0],
-              attendeeArr: attendeeRes
+              attendeeArr: attendeeRes,
+              API_KEY: API_KEY
             }
           response.render('app/Edit', data)
         });
