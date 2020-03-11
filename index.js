@@ -3,9 +3,6 @@ const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-console.log('api key in index:', process.env.REACT_APP_GOOGLE_API_KEY)
-
-
 /**
  * ===================================
  * Configurations and set up

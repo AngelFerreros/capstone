@@ -1,6 +1,5 @@
 const sha256 = require("js-sha256");
 require('dotenv').config()
-console.log('api key in controllers:', process.env.REACT_APP_GOOGLE_API_KEY)
 module.exports = (db) => {
 
   /**
