@@ -59,13 +59,9 @@ res.sendStatus(500) // equivalent to res.status(500).send('Internal Server Error
             activities: sortRes
             }
         response.render('app/index', data);
-
         }
       })
-
     }
-
-
   };
 
   const landing = (request, response) => {
@@ -275,6 +271,7 @@ const loginUser = (request,response) => {
 // only host can delete activity
   const deleteActivity = (request, response) => {
     let activityId = request.params.id;
+    let userId = request.cookies.userId;
     db.app.deleteActivity(activityId, (error,result) => {
       if (error){
         console.log('error: ', error)

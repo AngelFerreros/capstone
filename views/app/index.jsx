@@ -52,7 +52,6 @@ class Index extends React.Component {
                   <p className="card-text">Venue: <span> {venue} </span> </p>
                   <p className="card-text">Date: <span> {date} </span> </p>
                   <p className="card-text">Time: <span> {formattedStart} - {formattedEnd}</span> </p>
-                    <a href={url} className="btn btn-info">View More</a>
             </div>
           </div>
           );
