@@ -13,16 +13,14 @@ class Index extends React.Component {
 
 // create cards for individual activity
     let card;
-    let today = moment().format('MMM DD YYYY');
-    console.log('today is:', today)
     if (activityArr){
       card = activityArr.map( (activity,index) => {
         const activityId = activity.id;
         let url = '/activity/'+activityId;
         const title = activity.title;
         const venue = activity.address;
-        const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
 
+        const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
         const start = activity.start_at;
         const end = activity.end_at;
         const parseString = "HH:mm:ss ZZ";
@@ -30,8 +28,7 @@ class Index extends React.Component {
           const formattedEnd = moment.parseZone(end,parseString).format('h:mm a');
 
         console.log('activity details: ',activityId, title, venue, date, formattedStart, formattedEnd);
-        if(date >= today){
-          console.log('hrhsgsdv', activity.activity_date >= today)
+        if(Date.parse(activity.activity_date) >= Date.now()){
           return (
           <div className="card border-info mb-3">
             <div className="card-body">

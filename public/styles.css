@@ -1,9 +1,7 @@
-/*html, body {
-    margin: 0;
+html, body {
     height: 100%;
-    position: relative;
 }
-*/
+
 #layout-container{
     min-height: 100vh;
 }
@@ -13,8 +11,6 @@
     color: #009EFF;
     height:65px;
     padding-top: 20px;
-    /*bottom: 0;*/
-    /*width: 100%;*/
 }
 
 #footer-text{
@@ -47,6 +43,20 @@
 
 }
 
+#app-name{
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 80px;
+    background: -webkit-linear-gradient(#C5E829, #F9EE52, #FC7202);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#tagline{
+    font-size: 30px;
+    color: #F7F052;
+    font-weight: bold;
+}
+
 .main-row,.card-row{
     padding: 20px;
 }
@@ -56,10 +66,15 @@
     min-height:75vh;
     max-width: 80vw;
 }
-/*
+
 .page-header{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -80px;
+  margin-left: -300px;
 }
-*/
+
 
 .form{
     max-width: 60%;
@@ -82,6 +97,5 @@
 
 .card-row{
     justify-content: space-around;
-
 }
 

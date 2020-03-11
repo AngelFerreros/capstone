@@ -13,15 +13,13 @@ User Stories:
 -Tennis players can search for events to join around their area.
 
 Wireframes:
-
+https://github.com/AngelFerreros/capstone/blob/master/gsm_wireframe.pdf
 
 Technologies used:
 - Express (MVC)
 - React.js
 - Javascript
-
-
-
+- Bootstrap
 
 Installation instructions (for any dependencies):
 
