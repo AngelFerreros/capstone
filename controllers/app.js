@@ -203,23 +203,34 @@ const loginUser = (request,response) => {
         } else {
           db.app.getAttendees(activityId, (attendeeErr, attendeeRes) => {
              console.log('attendee result in controller:' , attendeeRes)
+            if (attendeeRes){
+              let isAttending = false;
+              for (let i = 0;  i < attendeeRes.length; i++) {
+                let attendeeId = attendeeRes[i].user_id;
+                    console.log('user iddd:',userId)
+                  if (attendeeId === userId){
+                    isAttending = true;
+                    break;
+                  }
+              }
+              console.log('user attending?: ', isAttending)
+              data = {
+                userId:userId,
+                activityDetails: result[0],
+                attendeeArr: attendeeRes,
+                isAttending:isAttending
+              }
+            response.render('app/Activity', data);
+          }else {
             let isAttending = false;
-            for (let i = 0;  i < attendeeRes.length; i++) {
-              let attendeeId = attendeeRes[i].user_id;
-                  console.log('user iddd:',userId)
-                if (attendeeId === userId){
-                  isAttending = true;
-                  break;
-                }
-            }
-          console.log('user attending?: ', isAttending)
             data = {
-              userId:userId,
-              activityDetails: result[0],
-              attendeeArr: attendeeRes,
-              isAttending:isAttending
-            }
-          response.render('app/Activity', data);
+                userId:userId,
+                activityDetails: result[0],
+                attendeeArr: attendeeRes,
+                isAttending:isAttending
+              }
+            response.render('app/Activity',data)
+          }
           });
         }
       })

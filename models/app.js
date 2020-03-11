@@ -251,7 +251,7 @@ module.exports = (dbPoolInstance) => {
 
 // query to count activities hosted and joined
   const userActivities = (userId,callback)=>{
-    let query = 'SELECT activities.title, activities_users.isHost FROM activities INNER JOIN activities_users ON (activities.id = activities_users.activity_id)WHERE activities_users.user_id='+userId;
+    let query = 'SELECT activities.title, activities.id, activities_users.isHost FROM activities INNER JOIN activities_users ON (activities.id = activities_users.activity_id)WHERE activities_users.user_id='+userId;
     dbPoolInstance.query(query, (error, result) => {
       if(error || result.rows.length < 0){
         callback(error, null);

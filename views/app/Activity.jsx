@@ -15,13 +15,6 @@ class Activity extends React.Component {
     let editUrl = '/activity/'+activity.id+'/edit';
     let deleteUrl = '/activity/'+activity.id+'?_method=delete';
 
-    const attendeeArr = this.props.attendeeArr;
-    console.log('attendee array: ', attendeeArr)
-      const title = activity.title.toUpperCase();
-      const description = activity.description;
-      const venue = activity.address;
-      const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
-
     const start = activity.start_at;
     const end = activity.end_at;
     const parseString = "HH:mm:ss ZZ";
@@ -29,21 +22,35 @@ class Activity extends React.Component {
         const formattedEnd = moment.parseZone(end,parseString).format('h:mm a');
     const slots = activity.slots;
       console.log("slots:", slots);
+    const title = activity.title.toUpperCase();
+    const description = activity.description;
+    const venue = activity.address;
+    const date = moment(activity.activity_date.toISOString().split("T")[0]).format("MMM DD YYYY");
+
+    const attendeeArr = this.props.attendeeArr;
+    let attendees;
+    let playersNeeded;
+    if (attendeeArr === null || attendeeArr === undefined) {
+      attendees ="No attendees yet";
+      playersNeeded = slots;
+    }else{
+    console.log('attendee array: ', attendeeArr)
     const playersAttending = attendeeArr.length
-    const playersNeeded =  slots - playersAttending + 1//exclude host
+    playersNeeded =  slots - playersAttending + 1//exclude host
     console.log('players needed = ', playersNeeded)
 
-    var host;
-    const attendees = attendeeArr.map( (attendee , index) => {
-      host = attendee.ishost;
-      let hostDisplay;
-        if(host){
-           hostDisplay = "(Host)";
-         return <li key = {index} value = {attendee.user_id}>{attendee.username} {hostDisplay} </li>
-        } else {
-         return <li key = {index} value = {attendee.user_id}>{attendee.username}</li>
-        }
-    });
+      var host;
+      attendees = attendeeArr.map( (attendee , index) => {
+        host = attendee.ishost;
+        let hostDisplay;
+          if(host){
+             hostDisplay = "(Host)";
+           return <li key = {index} value = {attendee.user_id}><a href = {attendee.user_id}>{attendee.username} {hostDisplay}</a> </li>
+          } else {
+           return <li key = {index} value = {attendee.user_id}><a href = {attendee.user_id}>{attendee.username}</a></li>
+          }
+      });
+    }
 
     return (
         <Layout>
@@ -60,7 +67,7 @@ class Activity extends React.Component {
                         <p id = "addressToMap">{venue}</p>
                         <div id = "map"> </div>
                         <p>Attendees:</p>
-                        <a href ="#"> <ul>{attendees} </ul> </a>
+                         <ul>{attendees} </ul>
                         <p>Slots Left: {playersNeeded}</p>
 
                         <form method = "POST" action = {joinUrl}>

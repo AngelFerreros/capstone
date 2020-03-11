@@ -31,7 +31,8 @@ class Profile extends React.Component {
     if (userActivities){
       hostedActivities = userActivities.map( (activity)=>{
         if (activity.ishost){
-        return  <li>{activity.title}</li>
+        let activityPath = '/activity/'+activity.id;
+          return  <li><a href = {activityPath}>{activity.title}</a></li>
         }
       });
     }else {
