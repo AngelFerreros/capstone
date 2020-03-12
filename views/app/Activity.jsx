@@ -7,6 +7,10 @@ moment().format();
 class Activity extends React.Component {
 
   render() {
+    let API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+
+    let initScript = "https://maps.googleapis.com/maps/api/js?key="+API_KEY+"&libraries=places&callback=initmap";
+
     const activity = this.props.activityDetails;
     const attending = this.props.isAttending;
     const loggedInUser = parseInt(this.props.userId);
