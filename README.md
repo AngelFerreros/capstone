@@ -1,7 +1,7 @@
 Project #4:
 
 An embedded screenshot of the app:
-<img src = "Game-Set-Match.png"> </img>
+https://github.com/AngelFerreros/capstone/blob/master/Game-Set-Match.png
 
 
 General approach:
