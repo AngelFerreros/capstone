@@ -1,8 +1,7 @@
 Project #4:
 
 An embedded screenshot of the app:
-https://github.com/AngelFerreros/capstone/blob/master/Game-Set-Match.png
-
+<img src = "Game-Set-Match.png"></img>
 
 General approach:
 - Thought of a 'problem to solve' or how to improve on things.
