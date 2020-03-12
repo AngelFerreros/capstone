@@ -6,9 +6,12 @@ class Register extends React.Component {
 
   render() {
     let errorMsg = this.props.error ? this.props.errorMsg : " " ;
+    //  let API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+    // let apiScript = "https://maps.googleapis.com/maps/api/js?key="+API_KEY+"&libraries=places&callback=activateAutocomplete";
 
     return(
         <Layout>
+
             <div className="container text-center" id="register" >
                 <div className="row main-row">
                   <div className="col-auto form">
@@ -75,6 +78,7 @@ class Register extends React.Component {
                   </div>
                 </div>
             </div>
+            <script src = 'maps.js'> </script>
         </Layout>
     );
   }

@@ -102,6 +102,7 @@ class Create extends React.Component {
                     </div>
                 </div>
             </div>
+            <script src = 'maps.js'> </script>
         </Layout>
     );
   }

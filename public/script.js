@@ -16,42 +16,6 @@
   }, false);
 })();
 
-
-function activateAutocomplete() {
-  let input = document.getElementById('address');
-  let options = {
-      componentRestrictions: {country: 'sg'}
-  };
-  let autocomplete = new google.maps.places.Autocomplete(input,options);
-};
- activateAutocomplete()
-
-var map;
-  function initMap() {
-    let address = document.getElementById('addressToMap').innerText;
-    console.log('address is:', address)
-      let geocoder = new google.maps.Geocoder();
-        geocoder.geocode( { 'address': address}, function(results, status) {
-          if (status == 'OK') {
-            var latitude = results[0].geometry.location.lat
-            var longitude = results[0].geometry.location.lng
-              map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: latitude, lng: longitude},
-                zoom: 15
-              })
-              map.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
-                  map: map,
-                  position: results[0].geometry.location
-              });
-            }
-            else {
-              alert('Geocode was not successful for the following reason: ' + status);
-            }
-          })
-        };
-initMap();
-
 function addDisable(){
   console.log('clicked add');
   let coachingSwitch = document.getElementById('coaching');
@@ -68,27 +32,3 @@ function removeDisable(){
 document.getElementById('beginner').addEventListener('click', addDisable);
 document.getElementById('intermediate').addEventListener('click', removeDisable);
 document.getElementById('competitive').addEventListener('click', removeDisable);
-
-// function dateValidation(){
-//   console.log('validating date');
-//   let dateField = document.getElementById('date');
-//     let dateInput = dateField.value;
-//   let today = Date.now();
-//   if(dateInput >= today ){
-//   }
-// }
-// let form = document.getElementsByClassName('create-form')
-// form.addEventListener('submit', dateValidation);
-
-
-
-
-// function hideJoinBtn(){
-//   document.getElementById('join-btn').setAttribute('display','none');
-// }
-
-// function hideHostBtns(){
-//   document.getElementById('edit-btn').setAttribute('display','none');
-//   document.getElementById('delete-btn').setAttribute('display','none');
-
-// }
